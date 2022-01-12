@@ -1,7 +1,7 @@
 import "./style.scss";
 import { Component } from "react";
 
-import NavItem from "../../Components/NavItem";
+import HeaderItem from "../../Components/HeaderItem";
 import Logo from "../../Components/Logo";
 import SelectCurrency from "../../Components/SelectCurrency";
 import BasketButton from "../../Components/BasketButton";
@@ -18,17 +18,17 @@ export class Home extends Component {
             <header className="header">
                 <div className="header__nav">
                     {this.categories.map((category) => (
-                        <NavItem
+                        <HeaderItem
                             key={category.name}
                             name={category.name}
-                        ></NavItem>
+                        ></HeaderItem>
                     ))}
                 </div>
                 <div className="header__logo-wrapper">
                     <Logo />
                 </div>
 
-                <div className="header__additional">
+                <div className="header__actions">
                     <div className="header__select-currency-wrapper">
                         <SelectCurrency />
                     </div>

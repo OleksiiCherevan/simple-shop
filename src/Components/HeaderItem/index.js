@@ -2,7 +2,7 @@ import { Component } from "react";
 
 import "./style.scss"
 
-class NavItem extends Component {
+class HeaderItem extends Component {
     constructor(props) {
         super(props);
 
@@ -16,10 +16,10 @@ class NavItem extends Component {
     render() {
         return (
             <>
-                <a className="nav-item">{this.name}</a>
+                <a className="header-item">{this.name}</a>
             </>
         );
     }
 }
 
-export default NavItem;
+export default HeaderItem;
