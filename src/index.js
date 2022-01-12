@@ -4,8 +4,8 @@ import reportWebVitals from './reportWebVitals';
 
 import './index.css';
 
-import Home from './Pages/Home'
-import Header from './Pages/Header'
+import Home from './Desktop/Pages/Home'
+import Header from './Desktop/Pages/Header'
 
 ReactDOM.render(
   <React.StrictMode>

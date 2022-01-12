@@ -5,7 +5,7 @@ import HeaderItem from "../../Components/HeaderItem";
 import Logo from "../../Components/Logo";
 import SelectCurrency from "../../Components/SelectCurrency";
 import BasketButton from "../../Components/BasketButton";
-import { GetCategories } from "../../assets/data";
+import { GetCategories } from "../../../assets/data";
 
 export class Home extends Component {
     constructor(props) {

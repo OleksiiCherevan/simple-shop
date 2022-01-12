@@ -1,0 +1,29 @@
+.product-card-desktop {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    $size: 250px;
+    
+    height: $size;
+    width: $size;
+
+    background-color: rosybrown;
+
+    &__image {
+        padding:10px;
+    }
+    
+    &__content {
+        justify-self: end;
+        padding: 10px;
+    }
+
+    &__title {
+        font-weight: 300;
+    }
+
+    &__price{
+        font-weight: 400;
+    }
+}
