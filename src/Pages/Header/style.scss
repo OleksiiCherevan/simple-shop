@@ -1,0 +1,47 @@
+@import "./../../assets/styles/main-style.scss";
+
+.header {
+    display: flex;
+    justify-content: space-between;
+
+    height: 5rem;
+
+    padding-top: 0.5rem;
+    padding-left: $main-padding-x;
+    padding-right: $main-padding-x;
+
+    &__nav {
+        display: flex;
+        flex-direction: row;
+        flex: 4;
+    }
+
+    &__logo-wrapper {
+        flex: 2;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+    }
+
+    &__additional {
+        flex: 4;
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        gap: 2rem;
+    }
+
+    &__select-currency-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__basket-button-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+    }
+}

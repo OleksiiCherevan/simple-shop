@@ -1,0 +1,6 @@
+@import "./colors.scss";
+@import "./fonts.scss";
+@import "./padding.scss"
+
+// I don`t want to import my colors, fonts, and etc every time 
+// so i decide to create this file and import only this file

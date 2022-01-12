@@ -1,0 +1,27 @@
+@import "./../../assets/styles/main-style.scss";
+
+$height: 0;
+
+.nav-item {
+    padding: 2rem 2rem 2rem 2rem;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: $black;
+
+    font-family: "Raleway";
+    font-weight: 400;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    line-height: 120%;
+
+    &:hover {
+        border-bottom: $primary 0.2rem solid;
+        color: $primary;
+        font-weight: 500;
+    }
+}
+

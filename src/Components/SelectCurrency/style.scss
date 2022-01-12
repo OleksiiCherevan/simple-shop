@@ -1,0 +1,22 @@
+.select-currency {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    gap: 8px;
+    .icon {
+        font-size: 1.6rem;
+        font-family: "Raleway";
+    }
+    .menu {
+        svg {
+            height: 1rem;
+            width: 1rem;
+
+            padding-top: 0.6rem;
+        }
+    }
+}
