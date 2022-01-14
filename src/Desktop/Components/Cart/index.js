@@ -2,7 +2,9 @@ import "./style.scss";
 
 import { Component } from "react";
 
-class BasketButton extends Component {
+import CartCard from './../CartCard'
+
+class Cart extends Component {
     constructor(props) {
         super(props);
 
@@ -12,12 +14,14 @@ class BasketButton extends Component {
     }
 
     getCountElement() {
-        return this.state.countItems ? <div className="basket-button__count">{this.state.countItems}</div> : null;
+        return this.state.countItems ? (
+            <div className="cart__count">{this.state.countItems}</div>
+        ) : null;
     }
 
     render() {
         return (
-            <div className="basket-button">
+            <div className="cart">
                 <svg
                     width="20"
                     height="20"
@@ -39,9 +43,19 @@ class BasketButton extends Component {
                     />
                 </svg>
                 {this.getCountElement()}
+
+                <div className="cart__menu">
+                    <div className="cart__title">
+                        <b>My bag</b>, {2} items
+                    </div>
+
+                    <div className="cart__products">
+                        {[1,2,3].map( product => <CartCard key={product} />)}
+                    </div>
+                </div>
             </div>
         );
     }
 }
 
-export default BasketButton;
+export default Cart;

@@ -15,9 +15,7 @@ class HeaderItem extends Component {
 
     render() {
         return (
-            <>
-                <a className="header-item">{this.name}</a>
-            </>
+                <a className="header-nav-item">{this.name}</a>
         );
     }
 }

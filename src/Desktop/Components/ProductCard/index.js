@@ -2,8 +2,6 @@ import "./style.scss";
 
 import { Component } from "react";
 
-import Layout from "../Layot";
-
 import ProductA from "./../../../assets/images/products-photo/Product-B.png";
 
 class ProductCard extends Component {

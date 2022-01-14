@@ -1,10 +1,10 @@
 import "./style.scss";
 import { Component } from "react";
 
-import HeaderItem from "../../Components/HeaderItem";
+import HeaderNavItem from "../../Components/HeaderNavItem";
 import Logo from "../../Components/Logo";
-import SelectCurrency from "../../Components/SelectCurrency";
-import BasketButton from "../../Components/BasketButton";
+import Currency from "../../Components/Currency";
+import Cart from "../../Components/Cart";
 import { GetCategories } from "../../../assets/data";
 
 export class Home extends Component {
@@ -18,10 +18,10 @@ export class Home extends Component {
             <header className="header">
                 <div className="header__nav">
                     {this.categories.map((category) => (
-                        <HeaderItem
+                        <HeaderNavItem
                             key={category.name}
                             name={category.name}
-                        ></HeaderItem>
+                        ></HeaderNavItem>
                     ))}
                 </div>
                 <div className="header__logo-wrapper">
@@ -29,12 +29,12 @@ export class Home extends Component {
                 </div>
 
                 <div className="header__actions">
-                    <div className="header__select-currency-wrapper">
-                        <SelectCurrency />
+                    <div className="header__currency-wrapper">
+                        <Currency />
                     </div>
 
-                    <div className="header__basket-button-wrapper">
-                        <BasketButton />
+                    <div className="header__cart-wrapper">
+                        <Cart />
                     </div>
                 </div>
             </header>

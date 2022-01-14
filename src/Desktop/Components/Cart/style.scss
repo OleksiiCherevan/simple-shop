@@ -1,4 +1,4 @@
-.basket-button {
+.cart {
     position: relative;
     cursor: pointer;
     
@@ -26,5 +26,27 @@
 
         border-radius: 50%;
         background-color: black;
+    }
+
+    &__menu {
+        position: absolute;
+        background-color: red;
+
+        top: 3rem;
+        right: 0rem;
+        // width: 20rem;
+
+        font-size: 1rem;
+    }
+
+    &__title {
+        padding: 0.5rem;
+    }
+
+    &__products {
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
     }
 }

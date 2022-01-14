@@ -1,40 +1,35 @@
 import "./style.scss";
 import { Component } from "react";
 
-import SelectCurrencyMenu from "../SelectCurrencyMenu";
-
-class SelectCurrency extends Component {
+class Currency extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             icon: "$",
-            isOpen: false,
-            menu: null,
+
+            selected: null,
+            currencies: ["$ USD", "€ EUR", "¥ JPY"],
         };
+
+        this.showMenu = this.handleOpen.bind(this);
     }
 
-    componentDidUpdate() {}
-
-    onOpenMenuClick(event) {
-        this.isOpen = !this.isOpen;
-
+    handleOpen(event) {
         this.setState({
-            menu: this.isOpen ? <SelectCurrencyMenu/> : null,
+            isOpen: true,
         });
     }
 
     render() {
         return (
-            <div className="select-currency">
-                <div
-                    className="select-currency__select-button"
-                    onClick={() => this.onOpenMenuClick()}
-                >
+            <div className="currency">
+                <div className="currency__select-button">
                     <div className="icon">{this.state.icon}</div>
 
                     <div className="menu">
                         <svg
+                            className="arrow_up arrow"
                             width="8"
                             height="4"
                             viewBox="0 0 8 4"
@@ -50,10 +45,20 @@ class SelectCurrency extends Component {
                         </svg>
                     </div>
                 </div>
-                {this.state.menu}
+
+                <ul className="currency__menu">
+                    {this.state.currencies.map((currency, index) => (
+                        <li
+                            key={currency}
+                            onClick={() => this.handleCurrency(currency, index)}
+                        >
+                            {currency}
+                        </li>
+                    ))}
+                </ul>
             </div>
         );
     }
 }
 
-export default SelectCurrency;
+export default Currency;
