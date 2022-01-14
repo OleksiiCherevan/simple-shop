@@ -4,11 +4,9 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between; 
 
-    $size: 386px;
-
-    width: $size;
+    width: 386px;
 
     &:hover {
         // box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);\
@@ -23,6 +21,7 @@
     &__image {
         padding: 10px;
         padding-bottom: 0;
+        margin-bottom: 24px;
 
         position: relative;
         height: 100%;
@@ -71,7 +70,6 @@
         opacity: 0.5;
 
         background-color: #ffffff;
-
 
         >div {
             text-transform: uppercase;

@@ -19,10 +19,13 @@ $height: 0;
 
     cursor: pointer;
 
+    transition: color 0.2s ease-in-out;
+
     &:hover {
         border-bottom: $primary 0.2rem solid;
         color: $primary;
         font-weight: 500;
+
     }
 }
 

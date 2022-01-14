@@ -42,7 +42,6 @@ class ProductCard extends Component {
                         </svg>
                     </div>
 
-                    <Layout y={24} x={24} />
 
                     <div className="product-card-desktop__content">
                         <div className="product-card-desktop__title">
@@ -65,8 +64,6 @@ class ProductCard extends Component {
                             <div>Out of stock</div>
                         </div>
                     </div>
-
-                    <Layout y={24} x={24} />
 
                     <div className="product-card-desktop__content">
                         <div className="product-card-desktop__title">

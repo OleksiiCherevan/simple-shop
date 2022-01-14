@@ -1,14 +1,21 @@
 @import "./../../../assets/styles/main-style.scss";
 
 .header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+
+    z-index: 999;
+
     display: flex;
     justify-content: space-between;
 
     height: 5rem;
 
-    padding-top: 0.5rem;
+    padding-top: 2rem;
     padding-left: $main-padding-x;
     padding-right: $main-padding-x;
+    
 
     &__nav {
         display: flex;

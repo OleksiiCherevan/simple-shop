@@ -1,12 +1,23 @@
-import "./style.scss"
+import "./style.scss";
 
 import { Component } from "react";
 
-
 class BasketButton extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            countItems: props.countItems,
+        };
+    }
+
+    getCountElement() {
+        return this.state.countItems ? <div className="basket-button__count">{this.state.countItems}</div> : null;
+    }
+
     render() {
         return (
-            <a className="basket-button">
+            <div className="basket-button">
                 <svg
                     width="20"
                     height="20"
@@ -27,9 +38,10 @@ class BasketButton extends Component {
                         fill="#43464E"
                     />
                 </svg>
-            </a>
+                {this.getCountElement()}
+            </div>
         );
     }
 }
 
-export default BasketButton
+export default BasketButton;
