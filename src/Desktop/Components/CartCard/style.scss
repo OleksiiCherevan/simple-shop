@@ -1,22 +1,22 @@
+@import "./../../../assets/styles/main-style.scss";
+
 .cart-card {
     display: flex;
+
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
 
-    width: 26rem;
     height: 12rem;
 
-    gap: 1rem;
+    gap: 0.5rem;
 
-    padding: 1rem;
-    
     &:hover {
-        background-color: forestgreen !important ; 
-    }
+     }
 
     &__info {
-        flex: 13;
+        height: 100%;
+        flex: 10rem;
 
         display: flex;
         flex-direction: column;
@@ -24,8 +24,8 @@
 
     &__title {
         flex: 5;
-        background-color: forestgreen;
         font-size: 1.6rem;
+        font-weight: 300;
     }
 
     &__price {
@@ -36,24 +36,48 @@
 
         font-size: 1.6rem;
         font-weight: 500;
-        background-color: fuchsia;
     }
 
     &__types {
+        display: block;
         flex: 2.5rem;
-        background-color: firebrick;
+
+        display: flex;
+        flex-direction: row;
+
+        align-items: end;
+
+        gap: 0.5rem;
     }
 
     &__count-manager {
-        flex: 4;
-    }  
+        flex: 2;
+        height: 100%;
 
-    &__image {
-        flex: 10;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
     }
 
-    >div {
+    &__square {
+        height: 1.6rem;
+        width: 1.6rem;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 1.6rem;
+
+        border: solid 1px $black;
+    }
+
+    &__image {
+        flex: 12;
+
         height: 100%;
-        width: 100%;
+        width: 10rem;
+        object-fit: cover;
     }
 }

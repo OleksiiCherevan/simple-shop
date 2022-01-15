@@ -1,12 +1,33 @@
+@import "./../../../assets/styles/main-style.scss";
+.cart__background {
+    position: fixed;
+    top: 7rem;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    // pointer-events: none;
+
+    height: 100vh;
+    width: 100vw;
+
+    background: #39374860;
+    // background: red;
+
+     z-index: 99;
+}
+
 .cart {
-    position: relative;
+    position: absolute;
     cursor: pointer;
-    
+
     svg {
         height: 2.5rem;
         width: 2.5rem;
     }
 
+    right: 4.5rem;
+
+    
     &__count {
         position: absolute;
         top: -1rem;
@@ -16,37 +37,80 @@
         align-items: center;
         display: flex;
 
-        color: white;
         font-size: 1.4rem;
-        font-family: 'Roboto', sans-serif;
+        font-family: "Roboto", sans-serif;
         font-weight: 700;
+        color: $white;
 
         width: 2rem;
         height: 2rem;
 
         border-radius: 50%;
-        background-color: black;
-    }
+        background-color: $black;
+    }    
+}
 
-    &__menu {
-        position: absolute;
-        background-color: red;
+.cart-menu {
+    cursor:initial;
+    position: absolute;
+    z-index: 100;
 
-        top: 3rem;
-        right: 0rem;
-        // width: 20rem;
+    background: $white;
 
-        font-size: 1rem;
-    }
+    display: flex;
+    flex-direction: column;
 
+    top: 3.8rem;
+    right: 0rem;
+
+    padding: 1rem;
+    width: 24rem;
+
+    font-size: 1rem;
+    
     &__title {
-        padding: 0.5rem;
+    
     }
 
     &__products {
+        margin-top: 1rem;
         display: flex;
         flex-direction: column;
 
-        width: 100%;
+        gap: 1rem;
+    }
+
+    &__total {
+        margin-top: 3rem;
+        display: flex;
+        justify-content: space-between;
+
+        &-label {
+            font-weight: 700;
+        }
+    }
+
+    &__control-buttons {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: space-between;      
+    }
+
+    &__control-button {
+        cursor: pointer;
+        height: 3rem;
+        width: 10rem;
+        border-style: none;
+        font-size: 1rem;
+    }
+
+    &__bag-open {
+        background: $white;
+        border: 1px solid $black;
+    }
+
+    &__check-out {
+        background: $primary;
+        color: $white;
     }
 }

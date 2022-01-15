@@ -11,7 +11,7 @@ export class Home extends Component {
                     <div className="home__title">
                         Category name
                     </div>
-
+                
                     <div className="home__content-wrapper">
                         {
                             [1,2,3,4,5,6,7] .map(card => {

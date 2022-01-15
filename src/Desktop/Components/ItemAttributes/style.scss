@@ -1,0 +1,42 @@
+@import "./../../../assets/styles/main-style.scss";
+
+.item-attributes {
+    margin-right: 10px;
+
+    & input[type="radio"] {
+        display: none;
+    }
+
+    & label {
+        display: inline-block;
+        cursor: pointer;
+        border: 1px solid #999;
+        user-select: none;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        width: 1.6rem;
+        height: 1.6rem;
+    }
+
+    /* Checked */
+    & input[type="radio"]:checked + label {
+        background: $font-default;
+        color: $white;
+        border-color: $font-default;
+    }
+
+    /* Hover */
+    & label:hover {
+        color: $light-gray;
+    }
+
+    /* Disabled */
+    & input[type="radio"]:disabled + label {
+        background: #a6a6a620;
+        border-color: $light-gray;
+        color: $light-gray;
+    }
+}
