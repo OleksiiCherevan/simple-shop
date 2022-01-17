@@ -54,7 +54,6 @@
     cursor:initial;
     position: absolute;
     z-index: 100;
-
     background: $white;
 
     display: flex;
@@ -64,7 +63,7 @@
     right: 0rem;
 
     padding: 1rem;
-    width: 24rem;
+    width: 26rem;
 
     font-size: 1rem;
     
@@ -73,6 +72,9 @@
     }
 
     &__products {
+        height: 60vh;
+
+        overflow-y: auto;
         margin-top: 1rem;
         display: flex;
         flex-direction: column;

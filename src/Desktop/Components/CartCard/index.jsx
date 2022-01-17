@@ -5,7 +5,7 @@ import { Component } from "react";
 import ItemAttributes from "../ItemAttributes/indes";
 
 // Template
-import ProductA from './../../../assets/images/products-photo/Product-C.png'
+import ProductA from './../../../assets/images/product-images/Product-C.png'
 
 class CartCard extends Component {
     constructor(props) {

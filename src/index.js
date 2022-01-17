@@ -6,11 +6,13 @@ import './index.css';
 
 import Home from './Desktop/Pages/Home'
 import Header from './Desktop/Pages/Header'
+import ProductDescriptionPage from './Desktop/Pages/ProductDescriptionPage';
 
 ReactDOM.render(
   <React.StrictMode>
     <Header/>
-    <Home />
+    {/* <Home /> */}
+    <ProductDescriptionPage ></ProductDescriptionPage>
   </React.StrictMode>,
   document.getElementById('root')
 );

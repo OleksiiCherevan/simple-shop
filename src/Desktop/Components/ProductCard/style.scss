@@ -18,6 +18,9 @@
         }
     }
 
+    &_active {
+        cursor: pointer;
+    }
     &__image {
         padding: 10px;
         padding-bottom: 0;
@@ -42,7 +45,7 @@
     }
 
     &__content {
-        justify-self: flex-end;
+        justify-self: end;
         padding: 10px;
         padding-bottom: 2rem;
     }

@@ -33,6 +33,14 @@ const products = [
             { title: "L", isAvaliable: true },
         ],
         price: 75,
+    },{
+        title: "Jacket",
+        types: [
+            { title: "XS", isAvaliable: true },
+            { title: "S", isAvaliable: false },
+            { title: "L", isAvaliable: true },
+        ],
+        price: 75,
     },
 ];
 
@@ -49,11 +57,17 @@ class Cart extends Component {
         this.onShowCartClick = this.onShowCartClick.bind(this);
     }
 
+    componentDidMount() {
+        this.setState({
+            countItems: products.length,
+            totalPrice: 0,
+        })
+    }
+
     onShowCartClick(event) {
         this.setState({
             isShow: !this.state.isShow,
-            countItems: products.length,
-            totalPrice: 0,
+            
         });
     }
 
@@ -109,7 +123,7 @@ class Cart extends Component {
                             </div>
 
                             <div className="cart-menu__products">
-                                {products.map((product) => (
+                                {products.slice().map((product) => (
                                     <CartCard
                                         key={product.title}
                                         product={product}

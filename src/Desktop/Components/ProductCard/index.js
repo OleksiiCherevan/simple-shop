@@ -2,17 +2,26 @@ import "./style.scss";
 
 import { Component } from "react";
 
-import ProductA from "./../../../assets/images/products-photo/Product-B.png";
+import ProductA from "./../../../assets/images/product-images/Product-B.png";
 
 class ProductCard extends Component {
     constructor(props) {
         super(props);
-        this.isAvalile = true;
+        this.state = {
+            isAvailable: false
+        }
+    }
+
+    componentDidMount() {
+        console.log(this.props.isAvailable);
+        this.setState({
+            isAvalile: this.props.isAvailable
+        })
     }
     render() {
-        return !this.isAvalile ? (
+        return this.state.isAvalile ? (
             <>
-                <div className="product-card-desktop">
+                <div className="product-card-desktop product-card-desktop_active">
                     <div className="product-card-desktop__image">
                         <img src={ProductA}></img>
 
