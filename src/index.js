@@ -1,20 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import reportWebVitals from "./reportWebVitals";
 
-import './index.css';
+import "./index.css";
 
-import Home from './Desktop/Pages/Home'
-import Header from './Desktop/Pages/Header'
-import ProductDescriptionPage from './Desktop/Pages/ProductDescriptionPage';
+import Home from "./Desktop/Pages/Home";
+import Header from "./Desktop/Pages/Header";
+import ProductDescriptionPage from "./Desktop/Pages/ProductDescriptionPage";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Header/>
-    {/* <Home /> */}
-    <ProductDescriptionPage ></ProductDescriptionPage>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <div className="layout">
+            <Header />
+            {/* <Home /> */}
+            <ProductDescriptionPage></ProductDescriptionPage>
+        </div>
+    </React.StrictMode>,
+    document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

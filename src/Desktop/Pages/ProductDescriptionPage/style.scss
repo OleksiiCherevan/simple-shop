@@ -1,0 +1,32 @@
+.pdp {
+    margin-top: 5rem;
+
+    &__gallery {
+        display: flex;
+        flex-direction: row;
+    }
+
+    
+    &__thumbnails {
+        margin-right: 3rem;
+        display: flex;
+        flex-direction: column;
+
+        gap: 3rem;
+    }
+
+    &__thumbnail-picture {
+        height: 100px;
+        width: 100px;
+
+    }
+
+    &__main-image {
+        height: 700px;
+        width: 700px;
+
+        &-wrapper {
+            overflow: hidden;
+        }
+    }
+}
