@@ -1,12 +1,16 @@
+@import "./../../../assets/styles/main-style.scss";
 .pdp {
     margin-top: 5rem;
+    display: flex;
+    flex-direction: row;
 
     &__gallery {
         display: flex;
         flex-direction: row;
+
+        margin-right: 8rem;
     }
 
-    
     &__thumbnails {
         margin-right: 3rem;
         display: flex;
@@ -18,7 +22,6 @@
     &__thumbnail-picture {
         height: 100px;
         width: 100px;
-
     }
 
     &__main-image {
@@ -28,5 +31,70 @@
         &-wrapper {
             overflow: hidden;
         }
+    }
+
+    // right side
+    &__about-right {
+    }
+
+    &__product-name {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+    }
+
+    &__short-description {
+        font-size: 1.8rem;
+        margin-bottom: 3rem;
+    }
+
+    &__attribute {
+        margin-bottom: 3rem;
+        font-size: $font-size-primary;
+        font-weight: bold;
+
+        &-title {
+            margin-bottom: 1rem;
+        }
+
+        &-attributes {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            font-size: $font-size-small;
+            font-weight: 400;
+        }
+    }
+
+    &__price {
+        font-size: $font-size-primary;
+        font-weight: bold;
+
+        &-title {
+            margin-bottom: 1rem;
+        }
+
+        &-value {
+            font-size: $font-size-medium;
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__add-to-cart {
+        cursor: pointer;
+        background-color: $primary;
+        color: $white;
+        border: 0;
+        font-size: $font-size-small;
+        font-weight: 500;
+        height: 4rem;
+        width: 100%;
+        max-width: 20rem;
+        margin-bottom: 3rem;
+    }
+
+    &__main-description {
+        font-size: $font-size-small;
+        max-width: 20rem;
     }
 }

@@ -10,9 +10,11 @@ class Currency extends Component {
 
             selected: null,
             currencies: ["$ USD", "€ EUR", "¥ JPY"],
+            isOpen: false,
         };
 
-        this.showMenu = this.handleOpen.bind(this);
+        this.handleOpen = this.handleOpen.bind(this);
+        this.handleClose =this.handleClose.bind(this);
     }
 
     handleOpen(event) {
@@ -21,15 +23,21 @@ class Currency extends Component {
         });
     }
 
+    handleClose(event) {
+        this.setState({
+            isOpen: false,
+        });
+    }
+
     render() {
         return (
-            <div className="currency">
+            <div className="currency" onMouseEnter={this.handleOpen} onMouseLeave={this.handleClose}>
                 <div className="currency__select-button">
                     <div className="icon">{this.state.icon}</div>
 
                     <div className="menu">
                         <svg
-                            className="arrow_up arrow"
+                            className={this.state.isOpen ? "arrow_up arrow" : "arrow"}
                             width="8"
                             height="4"
                             viewBox="0 0 8 4"
@@ -44,6 +52,8 @@ class Currency extends Component {
                             />
                         </svg>
                     </div>
+
+
                 </div>
 
                 <ul className="currency__menu">

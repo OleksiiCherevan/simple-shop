@@ -1,7 +1,8 @@
 @import "./../../../assets/styles/main-style.scss";
 
 .item-attributes {
-    margin-right: 10px;
+    // margin-right: 10px;
+    // font-size: $font-size-very-small;
 
     & input[type="radio"] {
         display: none;
@@ -10,13 +11,16 @@
     & label {
         display: inline-block;
         cursor: pointer;
-        border: 1px solid #999;
+        border: 1px solid $black;
         user-select: none;
 
         display: flex;
         justify-content: center;
         align-items: center;
-        
+
+        font-size: 150%;
+        color:$black ;
+
         width: 1.6rem;
         height: 1.6rem;
     }

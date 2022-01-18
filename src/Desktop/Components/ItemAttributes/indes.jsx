@@ -4,11 +4,12 @@ import "./style.scss";
 class ItemAttributes extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            title: null,
-            name: null,
-            icon: null,
-            isActive: null,
+            title: "title",
+            name: "name",
+            icon: "T",
+            isActive: true,
         };
     }
 
@@ -24,7 +25,7 @@ class ItemAttributes extends Component {
 
     render() {
         return (
-            <div class="item-attributes">
+            <div  class="item-attributes">
                 <input
                     id={this.state.title + this.state.name}
                     type="radio"
@@ -33,8 +34,8 @@ class ItemAttributes extends Component {
                     value="4"
                 />
                 
-                <label for={this.state.title + this.state.name}>
-                    {" "}
+                <label style={{height: this.props.height+'px', width: this.props.width+'px'}} for={this.state.title + this.state.name}>
+                    {/* {" "} */}
                     {this.state.name}{" "}
                 </label>
             </div>

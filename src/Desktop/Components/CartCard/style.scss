@@ -24,7 +24,7 @@
 
     &__title {
         flex: 5;
-        font-size: 1.6rem;
+        font-size: $font-size-primary;
         font-weight: 300;
     }
 
@@ -34,20 +34,20 @@
         justify-content: start;
         align-items: center;
 
-        font-size: 1.6rem;
+        font-size: $font-size-primary;
         font-weight: 500;
     }
 
-    &__types {
-        display: block;
+    &__attributes {
         flex: 2.5rem;
-
         display: flex;
         flex-direction: row;
 
+        gap: 1rem ;
         align-items: end;
 
-        gap: 0.5rem;
+        font-size: $font-size-very-small;
+
     }
 
     &__count-manager {
@@ -70,9 +70,16 @@
         justify-content: center;
         align-items: center;
 
-        font-size: 1.6rem;
+        font-size: $font-size-primary;
 
         border: solid 1px $black;
+    }
+
+    &__count {
+        font-size: $font-size-primary;
+        font-weight: $font-medium;
+        text-align: center;
+
     }
 
     &__image {

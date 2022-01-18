@@ -7,13 +7,15 @@ import "./index.css";
 import Home from "./Desktop/Pages/Home";
 import Header from "./Desktop/Pages/Header";
 import ProductDescriptionPage from "./Desktop/Pages/ProductDescriptionPage";
+import CartBag from "./Desktop/Pages/CartBag";
 
 ReactDOM.render(
     <React.StrictMode>
         <div className="layout">
             <Header />
             {/* <Home /> */}
-            <ProductDescriptionPage></ProductDescriptionPage>
+            {/* <ProductDescriptionPage></ProductDescriptionPage> */}
+            <CartBag ></CartBag>
         </div>
     </React.StrictMode>,
     document.getElementById("root")

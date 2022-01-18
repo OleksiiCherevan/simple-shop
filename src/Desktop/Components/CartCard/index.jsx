@@ -13,14 +13,16 @@ class CartCard extends Component {
         console.log(props.product);
 
         this.state = {
-            product: props.product,
+            product: {
+                
+            },
         };
     }
 
     componentDidMount() {
-        // this.setState({
-        //     product: this.props.product
-        // })
+       this.setState({
+           product: this.props.product
+       })
     }
 
     render() {
@@ -36,7 +38,7 @@ class CartCard extends Component {
                         ${this.state.product.price}
                     </div>
                     <div
-                        className="cart-card__types"
+                        className="cart-card__attributes"
                         onChange={(event) => {
                             console.log(event.target.value);
                         }}
@@ -55,7 +57,7 @@ class CartCard extends Component {
 
                 <div className="cart-card__count-manager">
                     <div className="cart-card__square">+</div>
-                    <div className="cart-card__count"></div>
+                    <div className="cart-card__count">4</div>
                     <div className="cart-card__square">-</div>
                 </div>
 
