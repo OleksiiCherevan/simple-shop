@@ -1,16 +1,24 @@
 import "./style.scss";
-import { Component } from "react";
+import { Component, useEffect } from "react";
 
 import ProductCard from "../../Components/ProductCard";
 import Title from "../../Components/Title";
 
-// const CATEGORIES = gql`
-// {
-//   Categories {
-//    name
-//   }
-// }
-// `;
+import {
+    ApolloClient,
+    InMemoryCache,
+    ApolloProvider,
+    useQuery,
+    gql
+  } from "@apollo/client";
+
+const CATEGORIES_QUERY = gql`
+query GetQueries {
+  categories {
+   name
+  }
+}
+`;
 
 export class Home extends Component {
     constructor(props) {
@@ -34,23 +42,28 @@ export class Home extends Component {
                 <div className="home">
                     <Title>Category: {"All"}</Title>
 
-                    {/* <Query query={CATEGORIES}>
-                        {({loading, data})=> {
-                            console.log(data)
-                        }}
-                    </Query> */}
-
-                    <div className="home__content-wrapper">
-                        {[1, 2, 3, 4, 5, 6, 7].map((card) => {
-                            return (
-                                <ProductCard key={card} isAvailable={true} />
-                            );
-                        })}
-                    </div>
+                   <Content />
                 </div>
             </>
         );
     }
 }
 
+const Content =()=> {
+    const {loadint, error, data} = useQuery(CATEGORIES_QUERY)
+
+    useEffect(() => {
+        console.log(data);
+    }, [data])
+
+    return (
+        <div className="home__content-wrapper">
+        {[1, 2, 3, 4, 5, 6, 7].map((card) => {
+            return (
+                <ProductCard key={card} isAvailable={true} />
+            );
+        })}
+    </div>
+    )
+}
 export default Home;

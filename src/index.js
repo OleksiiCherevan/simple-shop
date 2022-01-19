@@ -1,59 +1,32 @@
+import "./index.css";
+
 import React from "react";
 import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
-
-import "./index.css";
-
-import {
-    ApolloClient,
-    InMemoryCache,
-    ApolloProvider,
-    gql,
-} from "@apollo/client";
 
 import Home from "./Desktop/Pages/Home";
 import Header from "./Desktop/Pages/Header";
 import ProductDescriptionPage from "./Desktop/Pages/ProductDescriptionPage";
 import CartBag from "./Desktop/Pages/CartBag";
 
+import {
+    ApolloClient,
+    InMemoryCache,
+    ApolloProvider,
+    useQuery,
+    gql
+  } from "@apollo/client";
+
 const client = new ApolloClient({
-    // uri: "https://48p1r2roz4.sse.codesandbox.io",
-    uri: "http://localhost:4000/",
-    cache: new InMemoryCache(),
-});
-
-// const client = ...
-
-client
-    .query({
-        // query: gql`
-        //     query Get {
-        //         rates(currency: "USD") {
-        //             currency
-        //         }
-        //     }
-        // `,
-
-         query: gql`
-            query GetCategories {
-                categories {
-                    name
-                }
-            }
-        `,
-    })
-    
-    .then((result) => console.log(result));
+    uri: 'http://localhost:4000/',
+    cache: new InMemoryCache()
+  });
 
 ReactDOM.render(
     <React.StrictMode>
-        <div>
-            <h1>Header</h1>
-
-            <h3>Test</h3>
-        </div>
-        {/* <BrowserRouter>
+        <BrowserRouter>
+            <ApolloProvider client={client}>
                 <Header />
                 <div className="layout">
                     <Routes>
@@ -66,7 +39,8 @@ ReactDOM.render(
                         <Route path="/cart-bag" element={<CartBag />} />
                     </Routes>
                 </div>
-            </BrowserRouter> */}
+            </ApolloProvider>
+        </BrowserRouter>
     </React.StrictMode>,
     document.getElementById("root")
 );
