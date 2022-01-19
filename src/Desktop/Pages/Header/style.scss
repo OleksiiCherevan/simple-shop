@@ -4,6 +4,7 @@
     position: sticky;
     top: 0;
     background-color: white;
+    padding:0 100px;
 
     z-index: 999;
 
@@ -19,6 +20,11 @@
         display: flex;
         flex-direction: row;
         flex: 4;
+        
+        // I need to change inner style of "a"
+        >a {
+            text-decoration: none;
+        }
     }
 
     &__logo-wrapper {

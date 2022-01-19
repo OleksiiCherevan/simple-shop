@@ -1,4 +1,4 @@
-import "./style.scss"
+import "./style.scss";
 import { Component } from "react";
 
 import ProductCard from "../../Components/ProductCard";
@@ -10,19 +10,16 @@ export class CartBag extends Component {
         return (
             <>
                 <div className="cart-bag">
-                    <Title >Cart</Title>
+                    <Title>Cart</Title>
 
-
-                    <div className="home__content-wrapper">
-                        {
-                            [1,2,3,4,5,6,7] .map(card => {
-                                return <>
-                                <span></span>
-                                    {/* <CartCard key={card}/>*/}
-                                     </> 
-                                
-                            })
-                        }
+                    <div className="cart-bag__content-wrapper">
+                        {[1, 2, 3, 4, 5, 6, 7].map((card) => {
+                            return (
+                                <div key={card} >
+                                    <CartCard />
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </>

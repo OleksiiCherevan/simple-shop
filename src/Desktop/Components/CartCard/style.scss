@@ -52,6 +52,7 @@
 
     &__count-manager {
         flex: 2;
+        max-width: 2rem;
         height: 100%;
 
         display: flex;
@@ -84,6 +85,7 @@
 
     &__image {
         flex: 12;
+        max-width: 10rem;
 
         height: 100%;
         width: 10rem;

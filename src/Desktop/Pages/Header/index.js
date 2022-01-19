@@ -6,6 +6,7 @@ import Logo from "../../Components/Logo";
 import Currency from "../../Components/Currency";
 import Cart from "../../Components/Cart";
 import { GetCategories } from "../../../assets/data";
+import { Link } from "react-router-dom";
 
 export class Home extends Component {
     constructor(props) {
@@ -18,10 +19,12 @@ export class Home extends Component {
             <header className="header">
                 <div className="header__nav">
                     {this.categories.map((category) => (
-                        <HeaderNavItem
-                            key={category.name}
-                            name={category.name}
-                        ></HeaderNavItem>
+                        <Link to={"/"}>
+                            <HeaderNavItem
+                                key={category.name}
+                                name={category.name}
+                            ></HeaderNavItem>
+                        </Link>
                     ))}
                 </div>
                 <div className="header__logo-wrapper">

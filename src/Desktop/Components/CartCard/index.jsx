@@ -10,12 +10,12 @@ import ProductA from './../../../assets/images/product-images/Product-C.png'
 class CartCard extends Component {
     constructor(props) {
         super(props);
-        console.log(props.product);
+        
 
         this.state = {
-            product: {
-                
-            },
+            title: "Title",
+            price: 0,
+            attributes: ['M', 'L'],
         };
     }
 
@@ -26,27 +26,27 @@ class CartCard extends Component {
     }
 
     render() {
-        console.log(this.props);
+        
 
         return (
             <div className="cart-card">
                 <div className="cart-card__info">
                     <div className="cart-card__title">
-                        {this.state.product.title}
+                        {this.state.title}
                     </div>
                     <div className="cart-card__price">
-                        ${this.state.product.price}
+                        ${this.state.price}
                     </div>
                     <div
                         className="cart-card__attributes"
                         onChange={(event) => {
-                            console.log(event.target.value);
+                            
                         }}
                     >
-                        {this.state.product.types.map((type, index) => (
+                        {this.state.attributes.map((type, index) => (
                             <ItemAttributes
                                 key={type.title}
-                                title={this.state.product.title}
+                                title={this.state.title}
                                 name={type.title}
                                 isActive={type.isAvaliable}
                                 icon={type.title}
@@ -61,7 +61,7 @@ class CartCard extends Component {
                     <div className="cart-card__square">-</div>
                 </div>
 
-                <img className="cart-card__image" src={ProductA} alt={this.state.product.title}></img>
+                <img className="cart-card__image" src={ProductA} alt={this.state.title}></img>
             </div>
         );
     }

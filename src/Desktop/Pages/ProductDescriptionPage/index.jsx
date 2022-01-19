@@ -17,8 +17,6 @@ class ProductDescriptionPage extends Component {
         this.state = {
             selectedImage: null,
         };
-
-        // this.onHandleHover = this.onHandleHover.bind(this)
     }
 
     componentDidMount() {
@@ -28,8 +26,8 @@ class ProductDescriptionPage extends Component {
     }
 
     onHandleHover(event, index) {
-        console.log(index);
-        console.log(this.state.selectedImage);
+        
+        
 
         this.setState({
             selectedImage: products[index],

@@ -15,7 +15,7 @@ class HeaderItem extends Component {
 
     render() {
         return (
-                <a className="header-nav-item">{this.name}</a>
+                <div className="header-nav-item">{this.name}</div>
         );
     }
 }

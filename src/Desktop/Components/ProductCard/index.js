@@ -13,7 +13,7 @@ class ProductCard extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.isAvailable);
+        
         this.setState({
             isAvalile: this.props.isAvailable
         })

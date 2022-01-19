@@ -14,7 +14,7 @@ class ItemAttributes extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props);
+        
         this.setState({
             title: this.props.title,
             name: this.props.name,
@@ -25,7 +25,7 @@ class ItemAttributes extends Component {
 
     render() {
         return (
-            <div  class="item-attributes">
+            <div  className="item-attributes">
                 <input
                     id={this.state.title + this.state.name}
                     type="radio"
@@ -34,7 +34,7 @@ class ItemAttributes extends Component {
                     value="4"
                 />
                 
-                <label style={{height: this.props.height+'px', width: this.props.width+'px'}} for={this.state.title + this.state.name}>
+                <label style={{height: this.props.height+'px', width: this.props.width+'px'}} htmlFor={this.state.title + this.state.name}>
                     {/* {" "} */}
                     {this.state.name}{" "}
                 </label>
