@@ -38,7 +38,9 @@ export class Home extends Component {
 
 const Content = ({parentCategory="all"}) => {
     let { category } = useParams();
-    if (!category) category = parentCategory;
+
+    if (!category) 
+        category = parentCategory;
 
     const PRODUCTS_FROM_NAME_QUERY = gql` 
 query getProduct {
@@ -75,7 +77,7 @@ query getProduct {
 }
 `;
     const { loading, error, data } = useQuery(PRODUCTS_FROM_NAME_QUERY);
-    console.log(data.category.products);
+    
     if(loading)
         return <div>Loading</div>
     if(error)

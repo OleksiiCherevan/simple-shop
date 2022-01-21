@@ -4,7 +4,7 @@ import { Component } from "react";
 
 import ProductA from "./../../../assets/images/product-images/Product-B.png";
 
-const priceId = 3;
+const priceId = 1;
 class ProductCard extends Component {
     constructor(props) {
         super(props);
