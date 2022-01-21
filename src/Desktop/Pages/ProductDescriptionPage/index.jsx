@@ -17,110 +17,110 @@ import {
     gql,
 } from "@apollo/client";
 
-let products = [ProductA, ProductB];
+// let products = [ProductA, ProductB];
 
-class ProductDescriptionPage extends Component {
-    constructor(props) {
-        super(props);
+// class ProductDescriptionPage extends Component {
+//     constructor(props) {
+//         super(props);
 
-        this.state = {
-            selectedImage: null,
-        };
-    }
+//         this.state = {
+//             selectedImage: null,
+//         };
+//     }
 
-    componentDidMount() {
-        this.setState({
-            selectedImage: products.length > 0 ? products[0] : null,
-        });
-    }
+//     componentDidMount() {
+//         this.setState({
+//             selectedImage: products.length > 0 ? products[0] : null,
+//         });
+//     }
 
-    onHandleHover(event, index) {
-        this.setState({
-            selectedImage: products[index],
-        });
-    }
+//     onHandleHover(event, index) {
+//         this.setState({
+//             selectedImage: products[index],
+//         });
+//     }
 
-    render() {
-        return (
-            <div className="pdp">
-                <div className="pdp__gallery">
-                    <div className="pdp__thumbnails">
-                        {products.map((product, index) => {
-                            return (
-                                <img
-                                    className="pdp__thumbnail-picture"
-                                    src={product}
-                                    onMouseEnter={(event) =>
-                                        this.onHandleHover(event, index)
-                                    }
-                                ></img>
-                            );
-                        })}
-                    </div>
+//     render() {
+//         return (
+//             <div className="pdp">
+//                 <div className="pdp__gallery">
+//                     <div className="pdp__thumbnails">
+//                         {products.map((product, index) => {
+//                             return (
+//                                 <img
+//                                     className="pdp__thumbnail-picture"
+//                                     src={product}
+//                                     onMouseEnter={(event) =>
+//                                         this.onHandleHover(event, index)
+//                                     }
+//                                 ></img>
+//                             );
+//                         })}
+//                     </div>
 
-                    <div className="pdp__main-image">
-                        <ReactImageMagnify
-                            {...{
-                                smallImage: {
-                                    src: this.state.selectedImage,
-                                    isFluidWidth: true,
-                                },
-                                largeImage: {
-                                    src: this.state.selectedImage,
-                                    width: 2000,
-                                    height: 2000,
-                                },
-                            }}
-                        />
-                    </div>
-                </div>
+//                     <div className="pdp__main-image">
+//                         <ReactImageMagnify
+//                             {...{
+//                                 smallImage: {
+//                                     src: this.state.selectedImage,
+//                                     isFluidWidth: true,
+//                                 },
+//                                 largeImage: {
+//                                     src: this.state.selectedImage,
+//                                     width: 2000,
+//                                     height: 2000,
+//                                 },
+//                             }}
+//                         />
+//                     </div>
+//                 </div>
 
-                <div className="pdp__about-right">
-                    <div className="pdp__product-brand">Apollo</div>
-                    <div className="pdp__product-name">Running Short</div>
+//                 <div className="pdp__about-right">
+//                     <div className="pdp__product-brand">Apollo</div>
+//                     <div className="pdp__product-name">Running Short</div>
 
-                    <div className="pdp__attribute">
-                        <div className="pdp__attribute-title">SIZE:</div>
-                        <div className="pdp__attribute-attributes">
-                            {[1, 2, 3, 4].map((item) => {
-                                return (
-                                    <ItemAttributes
-                                        key={item}
-                                        height={45}
-                                        width={55}
-                                        title={"attribute"}
-                                        name={item}
-                                        isActive={true}
-                                    ></ItemAttributes>
-                                );
-                            })}
-                        </div>
-                    </div>
+//                     <div className="pdp__attribute">
+//                         <div className="pdp__attribute-title">SIZE:</div>
+//                         <div className="pdp__attribute-attributes">
+//                             {[1, 2, 3, 4].map((item) => {
+//                                 return (
+//                                     <ItemAttributes
+//                                         key={item}
+//                                         height={45}
+//                                         width={55}
+//                                         title={"attribute"}
+//                                         name={item}
+//                                         isActive={true}
+//                                     ></ItemAttributes>
+//                                 );
+//                             })}
+//                         </div>
+//                     </div>
 
-                    <div className="pdp__price">
-                        <div className="pdp__price-title">PRICE:</div>
-                        <div className="pdp__price-value">
-                            {"$"} {50.12}
-                        </div>
-                    </div>
+//                     <div className="pdp__price">
+//                         <div className="pdp__price-title">PRICE:</div>
+//                         <div className="pdp__price-value">
+//                             {"$"} {50.12}
+//                         </div>
+//                     </div>
 
-                    <button className="pdp__add-to-cart">ADD TO CART</button>
+//                     <button className="pdp__add-to-cart">ADD TO CART</button>
 
-                    <div className="pdp__main-description">
-                        {
-                            <p>
-                                Find stunning women's cocktail dresses and party
-                                dresses. <b>Stand out in lace</b> and metallic
-                                cocktail dresses and party dresses from all your
-                                favorite brands.
-                            </p>
-                        }
-                    </div>
-                </div>
-            </div>
-        );
-    }
-}
+//                     <div className="pdp__main-description">
+//                         {
+//                             <p>
+//                                 Find stunning women's cocktail dresses and party
+//                                 dresses. <b>Stand out in lace</b> and metallic
+//                                 cocktail dresses and party dresses from all your
+//                                 favorite brands.
+//                             </p>
+//                         }
+//                     </div>
+//                 </div>
+//             </div>
+//         );
+//     }
+// }
 
 const ProductDescriptionPageFunc = () => {
     let priceId = 1;
@@ -162,6 +162,10 @@ const ProductDescriptionPageFunc = () => {
     const [mainImage, setMainImage] = useState(null);
     const [product, setProduct] = useState(null);
 
+    const [currencyIndex, setCurrencyIndex] = useState(
+        localStorage.getItem("currencyIndex") | 0
+    );
+
     useEffect(() => {
         if (data) {
             setProduct(data.product);
@@ -186,9 +190,9 @@ const ProductDescriptionPageFunc = () => {
             <div className="pdp__gallery">
                 <div className="pdp__thumbnails">
                     {product.gallery.map((thumbnail, index) => {
-                        
                         return (
                             <img
+                                key={index}
                                 className="pdp__thumbnail-picture"
                                 src={thumbnail}
                                 onMouseEnter={(event) =>
@@ -205,6 +209,7 @@ const ProductDescriptionPageFunc = () => {
                             smallImage: {
                                 src: mainImage,
                                 isFluidWidth: true,
+
                             },
                             largeImage: {
                                 src: mainImage,
@@ -248,7 +253,7 @@ const ProductDescriptionPageFunc = () => {
                 <div className="pdp__price">
                     <div className="pdp__price-title">PRICE:</div>
                     <div className="pdp__price-value">
-                        {`${product.prices[priceId].currency.symbol} ${product.prices[priceId].amount}`}
+                        {`${product.prices[currencyIndex].currency.symbol} ${product.prices[currencyIndex].amount}`}
                     </div>
                 </div>
 
@@ -265,4 +270,5 @@ const ProductDescriptionPageFunc = () => {
         </div>
     );
 };
+
 export default ProductDescriptionPageFunc;

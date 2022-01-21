@@ -19,17 +19,7 @@ import {
 export class Home extends Component {
     constructor(props) {
         super(props);
-
-        // this.state = {
-        //     title: ''
-        // }
     }
-
-    // onSetTitle(title) {
-    //     this.setState({
-    //         title: title
-    //     })
-    // }
 
     render() {
         return (
@@ -44,10 +34,6 @@ export class Home extends Component {
 
 const Content = ({ parentCategory = "all", onSetTitle }) => {
     let { category } = useParams();
-
-    // useState(() => {
-    //     onSetTitle(category);
-    // }, [category]);
 
     if (!category) category = parentCategory;
 
@@ -103,6 +89,5 @@ query getCategories {
             </div>
         </>
     );
-
 };
 export default Home;

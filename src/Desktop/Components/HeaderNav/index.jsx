@@ -39,7 +39,7 @@ export default () => {
     return (
         <div className="header-nav">
             {data.categories.map((category) => (
-                <Link className='header-nav__link' to={"/category/" + category.name}>
+                <Link key={category.name} className='header-nav__link' to={"/category/" + category.name}>
                     <HeaderNavItem
                         key={category.name}
                         name={category.name}

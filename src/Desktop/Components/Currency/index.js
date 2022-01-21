@@ -1,5 +1,14 @@
 import "./style.scss";
 import { Component } from "react";
+import { useEffect, useState } from "react/cjs/react.development";
+
+import {
+    ApolloClient,
+    InMemoryCache,
+    ApolloProvider,
+    useQuery,
+    gql,
+} from "@apollo/client";
 
 class Currency extends Component {
     constructor(props) {
@@ -14,7 +23,7 @@ class Currency extends Component {
         };
 
         this.handleOpen = this.handleOpen.bind(this);
-        this.handleClose =this.handleClose.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
 
     handleOpen(event) {
@@ -31,13 +40,19 @@ class Currency extends Component {
 
     render() {
         return (
-            <div className="currency" onMouseEnter={this.handleOpen} onMouseLeave={this.handleClose}>
+            <div
+                className="currency"
+                onMouseEnter={this.handleOpen}
+                onMouseLeave={this.handleClose}
+            >
                 <div className="currency__select-button">
                     <div className="icon">{this.state.icon}</div>
 
                     <div className="menu">
                         <svg
-                            className={this.state.isOpen ? "arrow_up arrow" : "arrow"}
+                            className={
+                                this.state.isOpen ? "arrow_up arrow" : "arrow"
+                            }
                             width="8"
                             height="4"
                             viewBox="0 0 8 4"
@@ -52,8 +67,6 @@ class Currency extends Component {
                             />
                         </svg>
                     </div>
-
-
                 </div>
 
                 <ul className="currency__menu">
@@ -71,4 +84,74 @@ class Currency extends Component {
     }
 }
 
-export default Currency;
+const CurrencyFunc = () => {
+    const CURRENCIES_QUERY = gql`
+        query getCurrencies {
+            currencies {
+                label
+                symbol
+            }
+        }
+    `;
+    const { loading, error, data } = useQuery(CURRENCIES_QUERY);
+    const [isOpen, setIsOpen] = useState(false);
+    const [currencyIndex, setCurrencyIndex] = useState(
+        localStorage.getItem("currencyIndex") | 0
+    );
+
+    const onCurrencyChange = (currency, index) => {
+        localStorage.setItem("currencyIndex", index);
+        setCurrencyIndex(index);
+        
+        window.location.reload();
+    };
+
+    if (loading) return <div>Loading</div>;
+    if (error) return <div>Error</div>;
+
+    return (
+        <div
+            className="currency"
+            onMouseEnter={() => setIsOpen(true)}
+            onMouseLeave={() => setIsOpen(false)}
+        >
+            <div className="currency__select-button">
+                <div className="icon">
+                    {data.currencies[currencyIndex].symbol}
+                </div>
+
+                <div className="menu">
+                    <svg
+                        className={isOpen ? "arrow_up arrow" : "arrow"}
+                        width="8"
+                        height="4"
+                        viewBox="0 0 8 4"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M1 0.5L4 3.5L7 0.5"
+                            stroke="black"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>
+                </div>
+            </div>
+
+            <ul className="currency__menu">
+                {data.currencies.map((currency, index) => (
+                    <li
+                        key={currency.label}
+                        onClick={() => {
+                            onCurrencyChange(currency, index);
+                        }}
+                    >
+                        {currency.label} {currency.symbol}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+};
+export default CurrencyFunc;

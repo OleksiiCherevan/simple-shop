@@ -2,26 +2,14 @@ import "./style.scss";
 
 import { Component } from "react";
 
-import ProductA from "./../../../assets/images/product-images/Product-B.png";
-
 const priceId = 1;
 class ProductCard extends Component {
     constructor(props) {
         super(props);
-        this.state = { ...props };
-        // this.state = {
-        //     attributes: [],
-        //     brand,
-        //     category,
-        //     descriptionn,
-        //     gallery,
-        //     id,
-        //     inStock,
-        //     isAvailable: false
-        //     name,
-        //     prices: [],
-
-        // }
+        this.state = {
+            ...props,
+            indexCurrency: localStorage.getItem("currencyIndex") | 0,
+        };
     }
 
     componentDidMount() {}
@@ -62,7 +50,7 @@ class ProductCard extends Component {
                         </div>
 
                         <div className="product-card-desktop__price">
-                            {`${this.state.prices[priceId].currency.symbol} ${this.state.prices[priceId].amount}`}
+                            {`${this.state.prices[this.state.indexCurrency].currency.symbol} ${this.state.prices[this.state.indexCurrency].amount}`}
                         </div>
                     </div>
                 </div>
@@ -84,7 +72,7 @@ class ProductCard extends Component {
                         </div>
 
                         <div className="product-card-desktop__price">
-                            {`${this.state.prices[priceId].currency.symbol} ${this.state.prices[priceId].amount}`}
+                            {`${this.state.prices[this.state.indexCurrency].currency.symbol} ${this.state.prices[this.state.indexCurrency].amount}`}
                         </div>
                     </div>
                 </div>
