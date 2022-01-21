@@ -4,26 +4,33 @@ import { Component } from "react";
 
 import ProductA from "./../../../assets/images/product-images/Product-B.png";
 
+const priceId = 3;
 class ProductCard extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            isAvailable: false
-        }
+        this.state = { ...props };
+        // this.state = {
+        //     attributes: [],
+        //     brand,
+        //     category,
+        //     descriptionn,
+        //     gallery,
+        //     id,
+        //     inStock,
+        //     isAvailable: false
+        //     name,
+        //     prices: [],
+
+        // }
     }
 
-    componentDidMount() {
-        
-        this.setState({
-            isAvalile: this.props.isAvailable
-        })
-    }
+    componentDidMount() {}
     render() {
-        return this.state.isAvalile ? (
+        return this.state.inStock ? (
             <>
                 <div className="product-card-desktop product-card-desktop_active">
                     <div className="product-card-desktop__image">
-                        <img src={ProductA}></img>
+                        <img src={this.state.gallery[0]}></img>
 
                         <svg
                             className="circle-icon"
@@ -49,14 +56,13 @@ class ProductCard extends Component {
                         </svg>
                     </div>
 
-
                     <div className="product-card-desktop__content">
                         <div className="product-card-desktop__title">
-                            Apollo Running Short
+                            {this.state.name}
                         </div>
 
                         <div className="product-card-desktop__price">
-                            $ 50.00
+                            {`${this.state.prices[priceId].currency.symbol} ${this.state.prices[priceId].amount}`}
                         </div>
                     </div>
                 </div>
@@ -65,7 +71,7 @@ class ProductCard extends Component {
             <>
                 <div className="product-card-desktop">
                     <div className="product-card-desktop__image">
-                        <img src={ProductA}></img>
+                        <img src={this.state.gallery[0]}></img>
 
                         <div className="product-card-desktop__out">
                             <div>Out of stock</div>
@@ -74,11 +80,11 @@ class ProductCard extends Component {
 
                     <div className="product-card-desktop__content">
                         <div className="product-card-desktop__title">
-                            Apollo Running Short
+                            {this.state.name}
                         </div>
 
                         <div className="product-card-desktop__price">
-                            $ 50.00
+                            {`${this.state.prices[priceId].currency.symbol} ${this.state.prices[priceId].amount}`}
                         </div>
                     </div>
                 </div>

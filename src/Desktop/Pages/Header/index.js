@@ -1,31 +1,32 @@
 import "./style.scss";
-import { Component } from "react";
+import { Component, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import HeaderNavItem from "../../Components/HeaderNavItem";
 import Logo from "../../Components/Logo";
 import Currency from "../../Components/Currency";
 import Cart from "../../Components/Cart";
-import { GetCategories } from "../../../assets/data";
-import { Link } from "react-router-dom";
+import HeaderNav from "../../Components/HeaderNav";
+
+
+import {
+    ApolloClient,
+    InMemoryCache,
+    ApolloProvider,
+    useQuery,
+    gql,
+} from "@apollo/client";
 
 export class Home extends Component {
     constructor(props) {
         super(props);
-
-        this.categories = GetCategories();
     }
+
     render() {
         return (
             <header className="header">
-                <div className="header__nav">
-                    {this.categories.map((category) => (
-                        <Link to={"/"}>
-                            <HeaderNavItem
-                                key={category.name}
-                                name={category.name}
-                            ></HeaderNavItem>
-                        </Link>
-                    ))}
+                <div className="header__nav-wrapper">
+                    <HeaderNav />
                 </div>
                 <div className="header__logo-wrapper">
                     <Logo />

@@ -1,0 +1,10 @@
+
+.header-nav {
+    display: flex;
+    flex-direction: row;
+
+    // I need to change inner style of "a"
+    &__link {
+        text-decoration: none;
+    }
+}

@@ -1,5 +1,6 @@
 import "./style.scss";
-import { Component, useEffect } from "react";
+import { Component, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 import ProductCard from "../../Components/ProductCard";
 import Title from "../../Components/Title";
@@ -9,61 +10,83 @@ import {
     InMemoryCache,
     ApolloProvider,
     useQuery,
-    gql
-  } from "@apollo/client";
+    gql,
+} from "@apollo/client";
 
-const CATEGORIES_QUERY = gql`
-query GetQueries {
-  categories {
-   name
-  }
-}
-`;
+// I don`t know how to do it correctly yet...
+// So i decide to use power of string =)
 
 export class Home extends Component {
     constructor(props) {
-        super(props)
+        super(props);
 
-        this.state = {
-            categories: null,
-
-            loading: true,
-            error: null,
-            data: null
-        }
-    }
-
-    componentDidMount() {
+        
     }
 
     render() {
         return (
             <>
                 <div className="home">
-                    <Title>Category: {"All"}</Title>
+                    <Title>Category: {}</Title>
 
-                   <Content />
+                    <Content />
                 </div>
             </>
         );
     }
 }
 
-const Content =()=> {
-    const {loadint, error, data} = useQuery(CATEGORIES_QUERY)
+const Content = ({parentCategory="all"}) => {
+    let { category } = useParams();
+    if (!category) category = parentCategory;
 
-    useEffect(() => {
-        console.log(data);
-    }, [data])
+    const PRODUCTS_FROM_NAME_QUERY = gql` 
+query getProduct {
+    category(input: { title:"${category}" }) {
+        name
+        products {
+            id
+            name
+            inStock
+            gallery
+            description
+            category
+            attributes {
+                id
+                name
+                type
+                items {
+            id
+            displayValue
+            value
+        }
+    }
+    prices {
+        currency {
+        label
+        symbol
+        }
+        amount
+    }
+    brand
+
+    }
+  }
+}
+`;
+    const { loading, error, data } = useQuery(PRODUCTS_FROM_NAME_QUERY);
+    console.log(data.category.products);
+    if(loading)
+        return <div>Loading</div>
+    if(error)
+        return <div>Error</div>
 
     return (
         <div className="home__content-wrapper">
-        {[1, 2, 3, 4, 5, 6, 7].map((card) => {
-            return (
-                <ProductCard key={card} isAvailable={true} />
-            );
-        })}
-    </div>
-    )
-}
+           {data.category.products.map((product) => (
+                      <ProductCard key={product.id} {...product} isAvailable={true} />
+                  ))}
+        </div>
+    );
+};
 export default Home;
