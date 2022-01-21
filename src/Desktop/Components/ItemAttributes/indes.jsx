@@ -15,7 +15,6 @@ class ItemAttributes extends Component {
     }
 
     componentDidMount() {
-        
         this.setState({
             id: this.props.id,
             title: this.props.title,
@@ -27,16 +26,22 @@ class ItemAttributes extends Component {
 
     render() {
         return (
-            <div  className="item-attributes">
+            <div className="item-attributes">
                 <input
-                    id={this.state.title + this.state.name}
+                    id={this.state.id + this.state.name}
                     type="radio"
                     name={this.state.id}
                     disabled={!this.state.isActive}
                     value="4"
                 />
-                
-                <label style={{height: this.props.height+'px', width: this.props.width+'px'}} htmlFor={this.state.title + this.state.name}>
+
+                <label
+                    style={{
+                        height: this.props.height + "px",
+                        width: this.props.width + "px",
+                    }}
+                    htmlFor={this.state.id + this.state.name}
+                >
                     {/* {" "} */}
                     {this.state.name}{" "}
                 </label>
