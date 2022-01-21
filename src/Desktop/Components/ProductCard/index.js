@@ -58,7 +58,7 @@ class ProductCard extends Component {
 
                     <div className="product-card-desktop__content">
                         <div className="product-card-desktop__title">
-                            {this.state.name}
+                            {this.state.brand} {this.state.name}
                         </div>
 
                         <div className="product-card-desktop__price">

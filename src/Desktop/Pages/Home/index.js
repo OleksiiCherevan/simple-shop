@@ -1,6 +1,6 @@
 import "./style.scss";
 import { Component, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import ProductCard from "../../Components/ProductCard";
 import Title from "../../Components/Title";
@@ -20,15 +20,21 @@ export class Home extends Component {
     constructor(props) {
         super(props);
 
-        
+        // this.state = {
+        //     title: ''
+        // }
     }
+
+    // onSetTitle(title) {
+    //     this.setState({
+    //         title: title
+    //     })
+    // }
 
     render() {
         return (
             <>
                 <div className="home">
-                    <Title>Category: {}</Title>
-
                     <Content />
                 </div>
             </>
@@ -36,14 +42,17 @@ export class Home extends Component {
     }
 }
 
-const Content = ({parentCategory="all"}) => {
+const Content = ({ parentCategory = "all", onSetTitle }) => {
     let { category } = useParams();
 
-    if (!category) 
-        category = parentCategory;
+    // useState(() => {
+    //     onSetTitle(category);
+    // }, [category]);
+
+    if (!category) category = parentCategory;
 
     const PRODUCTS_FROM_NAME_QUERY = gql` 
-query getProduct {
+query getCategories {
     category(input: { title:"${category}" }) {
         name
         products {
@@ -77,18 +86,23 @@ query getProduct {
 }
 `;
     const { loading, error, data } = useQuery(PRODUCTS_FROM_NAME_QUERY);
-    
-    if(loading)
-        return <div>Loading</div>
-    if(error)
-        return <div>Error</div>
+
+    if (loading) return <div>Loading</div>;
+    if (error) return <div>Error</div>;
 
     return (
-        <div className="home__content-wrapper">
-           {data.category.products.map((product) => (
-                      <ProductCard key={product.id} {...product} isAvailable={true} />
-                  ))}
-        </div>
+        <>
+            <Title>Category: {category}</Title>
+
+            <div className="home__content-wrapper">
+                {data.category.products.map((product) => (
+                    <Link to={`/product/${product.id}`} key={product.id}>
+                        <ProductCard {...product} isAvailable={true} />
+                    </Link>
+                ))}
+            </div>
+        </>
     );
+
 };
 export default Home;

@@ -9,6 +9,7 @@ class ItemAttributes extends Component {
             title: "title",
             name: "name",
             icon: "T",
+            id: "attribute",
             isActive: true,
         };
     }
@@ -16,6 +17,7 @@ class ItemAttributes extends Component {
     componentDidMount() {
         
         this.setState({
+            id: this.props.id,
             title: this.props.title,
             name: this.props.name,
             icon: this.props.icon,
@@ -29,7 +31,7 @@ class ItemAttributes extends Component {
                 <input
                     id={this.state.title + this.state.name}
                     type="radio"
-                    name={this.state.title}
+                    name={this.state.id}
                     disabled={!this.state.isActive}
                     value="4"
                 />

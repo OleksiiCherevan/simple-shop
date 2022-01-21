@@ -33,7 +33,7 @@ ReactDOM.render(
                         <Route path="/" element={<Home />} />
                         <Route path="/category/:category" element={<Home />} />
                         <Route
-                            path="/pdp"
+                            path="/product/:id"
                             element={<ProductDescriptionPage />}
                         />
                         <Route path="/cart-bag" element={<CartBag />} />

@@ -20,8 +20,8 @@
     }
 
     &__thumbnail-picture {
-        height: 100px;
-        width: 100px;
+        max-height: 100px;
+        width: auto;
     }
 
     &__main-image {
@@ -35,33 +35,38 @@
 
     // right side
     &__about-right {
+        
     }
 
-    &__product-name {
+    &__product-brand {
         font-size: 2rem;
         font-weight: 600;
         margin-bottom: 0.3rem;
     }
 
-    &__short-description {
+    &__product-name {
         font-size: 1.8rem;
         margin-bottom: 3rem;
     }
 
     &__attribute {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
         margin-bottom: 3rem;
         font-size: $font-size-primary;
         font-weight: bold;
 
         &-title {
             margin-bottom: 1rem;
+            text-transform: uppercase;
         }
 
         &-attributes {
             display: flex;
             flex-direction: row;
             gap: 1rem;
-            font-size: $font-size-small;
+            font-size: calc($font-size-small - 0.5rem);
             font-weight: 400;
         }
     }
@@ -95,6 +100,5 @@
 
     &__main-description {
         font-size: $font-size-small;
-        max-width: 20rem;
     }
 }
