@@ -1,22 +1,14 @@
 import "./style.scss";
-import { Component, useEffect } from "react";
+import { Component } from "react";
 import { Link } from "react-router-dom";
 
-import HeaderNavItem from "../../Components/HeaderNavItem";
 import Logo from "../../Components/Logo";
 import Currency from "../../Components/Currency";
-import Cart from "../../Components/Cart";
+import HeaderCart from "../../Components/HeaderCart";
 import HeaderNav from "../../Components/HeaderNav";
 
 
-import {
-    ApolloClient,
-    InMemoryCache,
-    ApolloProvider,
-    useQuery,
-    gql,
-} from "@apollo/client";
-
+// checked
 export class Home extends Component {
     constructor(props) {
         super(props);
@@ -28,8 +20,11 @@ export class Home extends Component {
                 <div className="header__nav-wrapper">
                     <HeaderNav />
                 </div>
+
                 <div className="header__logo-wrapper">
-                    <Logo />
+                    <Link to="/">
+                        <Logo />
+                    </Link>
                 </div>
 
                 <div className="header__actions">
@@ -37,8 +32,8 @@ export class Home extends Component {
                         <Currency />
                     </div>
 
-                    <div className="header__cart-wrapper">
-                        <Cart />
+                    <div className="header__header-cart-wrapper">
+                        <HeaderCart />
                     </div>
                 </div>
             </header>

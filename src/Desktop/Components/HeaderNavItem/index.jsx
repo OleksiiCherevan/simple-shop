@@ -2,20 +2,19 @@ import { Component } from "react";
 
 import "./style.scss"
 
+// checked
 class HeaderItem extends Component {
     constructor(props) {
         super(props);
 
-        var { name } = props;
-
-        this.name = name;
+        this.state = {
+            name: props.name
+        }
     }
-
-    componentDidMount() {}
 
     render() {
         return (
-                <div className="header-nav-item">{this.name}</div>
+                <div className="header-nav-item">{this.state.name}</div>
         );
     }
 }

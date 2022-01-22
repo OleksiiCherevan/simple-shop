@@ -33,7 +33,8 @@ const products = [
             { title: "L", isAvaliable: true },
         ],
         price: 75,
-    },{
+    },
+    {
         title: "Jacket",
         types: [
             { title: "XS", isAvaliable: true },
@@ -44,7 +45,7 @@ const products = [
     },
 ];
 
-class Cart extends Component {
+class HeaderCart extends Component {
     constructor(props) {
         super(props);
 
@@ -61,13 +62,12 @@ class Cart extends Component {
         this.setState({
             countItems: products.length,
             totalPrice: 0,
-        })
+        });
     }
 
     onShowCartClick(event) {
         this.setState({
             isShow: !this.state.isShow,
-            
         });
     }
 
@@ -75,16 +75,16 @@ class Cart extends Component {
         return (
             <>
                 {this.state.isShow ? (
-                    <div
-                        className="cart__background"
-                        onClick={this.onShowCartClick}
-                    ></div>
+                    <>
+                        {/* <div className="header-cart__currency-hidder"></div> */}
+                        <div
+                            className="header-cart__background"
+                            onClick={this.onShowCartClick}
+                        ></div>
+                    </>
                 ) : null}
 
-                <div
-                    className="cart"
-                    onClick={this.onShowCartClick}
-                >
+                <div className="header-cart" onClick={this.onShowCartClick}>
                     <svg
                         width="20"
                         height="20"
@@ -107,14 +107,17 @@ class Cart extends Component {
                     </svg>
                     {/* get count element  */}
                     {this.state.countItems ? (
-                        <div className="cart__count">
+                        <div className="header-cart__count">
                             {this.state.countItems}
                         </div>
                     ) : null}
 
                     {this.state.isShow ? (
-                        <div className="cart-menu" onClick={(e) => e.stopPropagation()}>
-                            <div className="cart-menu__title">
+                        <div
+                            className="header-cart-menu"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <div className="header-cart-menu__title">
                                 <b>My bag</b>,{" "}
                                 {this.state.countItems
                                     ? this.state.countItems
@@ -122,7 +125,7 @@ class Cart extends Component {
                                 items
                             </div>
 
-                            <div className="cart-menu__products">
+                            <div className="header-cart-menu__products">
                                 {products.slice().map((product) => (
                                     <CartCard
                                         key={product.title}
@@ -131,23 +134,29 @@ class Cart extends Component {
                                 ))}
                             </div>
 
-                            <div className="cart-menu__total">
-                                <div className="cart-menu__total-label">Total</div>
-                                <div className="cart-menu__total-label">${this.state.totalPrice}</div>
+                            <div className="header-cart-menu__total">
+                                <div className="header-cart-menu__total-label">
+                                    Total
+                                </div>
+                                <div className="header-cart-menu__total-label">
+                                    ${this.state.totalPrice}
+                                </div>
                             </div>
 
-                            <div className="cart-menu__control-buttons">
-                                <button className="cart-menu__bag-open cart-menu__control-button">VIEW BAG</button>
-                                <button className="cart-menu__check-out cart-menu__control-button">CHECK OUT</button>
+                            <div className="header-cart-menu__control-buttons">
+                                <button className="header-cart-menu__bag-open header-cart-menu__control-button">
+                                    VIEW BAG
+                                </button>
+                                <button className="header-cart-menu__check-out header-cart-menu__control-button">
+                                    CHECK OUT
+                                </button>
                             </div>
                         </div>
                     ) : null}
                 </div>
-
-
             </>
         );
     }
 }
 
-export default Cart;
+export default HeaderCart;

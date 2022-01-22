@@ -13,12 +13,8 @@ import {
 
 import HeaderNavItem from "../HeaderNavItem";
 
-const getLinkFromWords = (link = '') => {
-    link.split().map(word => word.toLowerCase()).join('-')
-}
-
-
-export default () => {
+// checked 
+const HeaderNav = () => {
     const CATEGORIES_QUERY = gql`
         query GetQueries {
             categories {
@@ -29,12 +25,9 @@ export default () => {
     
     const { loading, error, data } = useQuery(CATEGORIES_QUERY);
 
-    useEffect(() => {
-        
-    }, [data]);
-
     if (loading) return <div>Loading....</div>;
 
+    if(error) return <div>Error...</div>
     
     return (
         <div className="header-nav">
@@ -49,3 +42,5 @@ export default () => {
         </div>
     );
 };
+
+export default HeaderNav
