@@ -21,7 +21,8 @@
 
     &__thumbnail-picture {
         max-height: 100px;
-        width: auto;
+        height: 100px;
+        width: min-content;
     }
 
     &__main-image {

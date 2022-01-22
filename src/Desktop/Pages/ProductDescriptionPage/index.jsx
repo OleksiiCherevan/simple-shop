@@ -3,11 +3,9 @@ import "./style.scss";
 import { Component, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import ProductA from "./../../../assets/images/product-images/Product-A.png";
-import ProductB from "./../../../assets/images/product-images/Product-B.png";
-
 import ReactImageMagnify from "react-image-magnify";
 import ItemAttributes from "../../Components/ItemAttributes/indes";
+import ItemAttributesColor from "../../Components/ItemAttributesColor/indes";
 
 import {
     ApolloClient,
@@ -123,8 +121,6 @@ import {
 // }
 
 const ProductDescriptionPageFunc = () => {
-    let priceId = 1;
-
     let { id } = useParams();
 
     const PRODUCT_FROM_ID = gql`
@@ -161,22 +157,23 @@ const ProductDescriptionPageFunc = () => {
 
     const [mainImage, setMainImage] = useState(null);
     const [product, setProduct] = useState(null);
-
     const [currencyIndex, setCurrencyIndex] = useState(
         localStorage.getItem("currencyIndex") | 0
     );
 
     useEffect(() => {
+        if (product) {
+            setMainImage(product.gallery[0]);
+        }
+    }, [product]);
+
+    useEffect(() => {
         if (data) {
             setProduct(data.product);
+            console.log(data.product);
         }
     }, [data]);
 
-    useEffect(() => {
-        if(product) {
-            setMainImage(product.gallery[0])
-        }
-    }, [product])
     const onHandleHover = (event, index) => {
         setMainImage(product.gallery[index]);
     };
@@ -209,12 +206,11 @@ const ProductDescriptionPageFunc = () => {
                             smallImage: {
                                 src: mainImage,
                                 isFluidWidth: true,
-
                             },
                             largeImage: {
                                 src: mainImage,
-                                width: 2000,
-                                height: 2000,
+                                width: 1200,
+                                height: 1800,
                             },
                         }}
                     />
@@ -228,22 +224,41 @@ const ProductDescriptionPageFunc = () => {
                 <div className="pdp__attribute">
                     {product.attributes.map((attribute) => {
                         return (
-                            <div>
+                            <div key={attribute.id}>
                                 <div className="pdp__attribute-title">
                                     {attribute.id}
                                 </div>
 
                                 <div className="pdp__attribute-attributes">
-                                    {attribute.items.map((item) => (
-                                        <ItemAttributes
-                                            key={item.displayValue}
+                                    {attribute.items.map((item) => {
+                                        return attribute.id == "Color" ? (
+                                            <ItemAttributesColor
+                                                height={50}
+                                                width={50}
+                                                key={item.displayValue}
+                                                id={attribute.id}
+                                                name={item.id}
+                                                isActive={true}
+                                            />
+                                        ) : (attribute.id == "Size") ? (
+                                            <ItemAttributes
+                                                height={50}
+                                                width={50}
+                                                key={item.displayValue}
+                                                id={attribute.id}
+                                                name={item.value}
+                                                isActive={true}
+                                            ></ItemAttributes> ) : (
+                                            <ItemAttributes
                                             height={45}
                                             width={55}
+                                            key={item.displayValue}
                                             id={attribute.id}
-                                            name={item.id}
+                                            name={item.displayValue}
                                             isActive={true}
                                         ></ItemAttributes>
-                                    ))}
+                                        );
+                                    })}
                                 </div>
                             </div>
                         );

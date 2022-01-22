@@ -28,7 +28,7 @@
     /* Checked */
     & input[type="radio"]:checked + label {
         background: $font-default;
-        color: $primary;
+        color: $white;
         border-color: $font-default;
     }
 
