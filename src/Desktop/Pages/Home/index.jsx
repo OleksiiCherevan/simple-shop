@@ -32,45 +32,47 @@ export class Home extends Component {
     }
 }
 
-const Content = ({ parentCategory = "all", onSetTitle }) => {
+
+const Content = () => {
     let { category } = useParams();
 
-    if (!category) category = parentCategory;
-
+    if (!category)
+        category = "all"
+    
     const PRODUCTS_FROM_NAME_QUERY = gql` 
-query getCategories {
-    category(input: { title:"${category}" }) {
-        name
-        products {
-            id
-            name
-            inStock
-            gallery
-            description
-            category
-            attributes {
-                id
+        query getCategories {
+            category(input: { title:"${category}" }) {
                 name
-                type
-                items {
-            id
-            displayValue
-            value
-        }
-    }
-    prices {
-        currency {
-        label
-        symbol
-        }
-        amount
-    }
-    brand
+                products {
+                    id
+                    name
+                    inStock
+                    gallery
+                    description
+                    category
+                    attributes {
+                        id
+                        name
+                        type
+                        items {
+                    id
+                    displayValue
+                    value
+                }
+            }
+            prices {
+                currency {
+                    label
+                    symbol
+                }
+                amount
+            }
+            brand
 
-    }
-  }
-}
-`;
+            }
+        }
+    }`;
+
     const { loading, error, data } = useQuery(PRODUCTS_FROM_NAME_QUERY);
 
     if (loading) return <div>Loading</div>;
@@ -83,7 +85,7 @@ query getCategories {
             <div className="home__content-wrapper">
                 {data.category.products.map((product) => (
                     <Link to={`/product/${product.id}`} key={product.id}>
-                        <ProductCard {...product} isAvailable={true} />
+                        <ProductCard {...product}/>
                     </Link>
                 ))}
             </div>

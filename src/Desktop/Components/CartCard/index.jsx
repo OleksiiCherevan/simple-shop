@@ -2,7 +2,7 @@ import "./style.scss";
 
 import { Component } from "react";
 
-import ItemAttributes from "../ItemAttributes/indes";
+import ItemAttributes from "../ItemAttribute/indes";
 
 // Template
 import ProductA from './../../../assets/images/product-images/Product-C.png'
@@ -13,16 +13,10 @@ class CartCard extends Component {
         
 
         this.state = {
-            title: "Title",
-            price: 0,
-            attributes: ['M', 'L'],
-        };
-    }
+            product: this.props.product,
+            selectedName: ''
 
-    componentDidMount() {
-       this.setState({
-           product: this.props.product
-       })
+        };
     }
 
     render() {
@@ -37,22 +31,8 @@ class CartCard extends Component {
                     <div className="cart-card__price">
                         ${this.state.price}
                     </div>
-                    <div
-                        className="cart-card__attributes"
-                        onChange={(event) => {
-                            
-                        }}
-                    >
-                        {this.state.attributes.map((type, index) => (
-                            <ItemAttributes
-                                key={type.title}
-                                title={this.state.title}
-                                name={type.title}
-                                isActive={type.isAvaliable}
-                                icon={type.title}
-                            />
-                        ))}
-                    </div>
+                    
+                    <ItemAttributes {...this.state.product}></ItemAttributes>
                 </div>
 
                 <div className="cart-card__count-manager">

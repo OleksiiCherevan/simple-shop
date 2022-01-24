@@ -38,17 +38,7 @@
         font-weight: 500;
     }
 
-    &__attributes {
-        flex: 2.5rem;
-        display: flex;
-        flex-direction: row;
-
-        gap: 1rem ;
-        align-items: end;
-
-        font-size: $font-size-very-small;
-
-    }
+    
 
     &__count-manager {
         flex: 2;

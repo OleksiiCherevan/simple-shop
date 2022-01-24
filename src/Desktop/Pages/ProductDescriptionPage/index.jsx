@@ -4,8 +4,8 @@ import { Component, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import ReactImageMagnify from "react-image-magnify";
-import ItemAttributes from "../../Components/ItemAttributes/indes";
-import ItemAttributesColor from "../../Components/ItemAttributesColor/indes";
+import ItemAttributes from "../../Components/ItemAttributes";
+import ItemAttributeColor from "../../Components/ItemAttributeColor/indes";
 
 import {
     ApolloClient,
@@ -221,49 +221,7 @@ const ProductDescriptionPageFunc = () => {
                 <div className="pdp__product-brand">{product.brand}</div>
                 <div className="pdp__product-name">{product.name}</div>
 
-                <div className="pdp__attribute">
-                    {product.attributes.map((attribute) => {
-                        return (
-                            <div key={attribute.id}>
-                                <div className="pdp__attribute-title">
-                                    {attribute.id}
-                                </div>
-
-                                <div className="pdp__attribute-attributes">
-                                    {attribute.items.map((item) => {
-                                        return attribute.id == "Color" ? (
-                                            <ItemAttributesColor
-                                                height={50}
-                                                width={50}
-                                                key={item.displayValue}
-                                                id={attribute.id}
-                                                name={item.id}
-                                                isActive={true}
-                                            />
-                                        ) : (attribute.id == "Size") ? (
-                                            <ItemAttributes
-                                                height={50}
-                                                width={50}
-                                                key={item.displayValue}
-                                                id={attribute.id}
-                                                name={item.value}
-                                                isActive={true}
-                                            ></ItemAttributes> ) : (
-                                            <ItemAttributes
-                                            height={45}
-                                            width={55}
-                                            key={item.displayValue}
-                                            id={attribute.id}
-                                            name={item.displayValue}
-                                            isActive={true}
-                                        ></ItemAttributes>
-                                        );
-                                    })}
-                                </div>
-                            </div>
-                        );
-                    })}
-                </div>
+                <ItemAttributes {...product}></ItemAttributes>
 
                 <div className="pdp__price">
                     <div className="pdp__price-title">PRICE:</div>

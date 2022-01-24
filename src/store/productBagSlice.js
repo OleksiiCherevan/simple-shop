@@ -3,11 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 const productBagSlice = createSlice({
     name: 'productBag',
     initialState: {
-        product: [],
+        products: [],
     },
     reducers: {
         addProduct(state, action) {
+            console.log(state, action)
 
+            state.products.push(action.payload.product)
         },
 
         removeProduct(state, action) {

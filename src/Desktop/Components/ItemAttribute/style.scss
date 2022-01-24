@@ -1,6 +1,6 @@
 @import "./../../../assets/styles/main-style.scss";
 
-.item-attributes-color {
+.item-attribute {
     // margin-right: 10px;
     // font-size: $font-size-very-small;
 
@@ -11,7 +11,7 @@
     & label {
         display: inline-block;
         cursor: pointer;
-        border: 0;
+        border: 1px solid $black;
         user-select: none;
 
         display: flex;
@@ -19,7 +19,7 @@
         align-items: center;
 
         font-size: 150%;
-        color:$black;
+        color:$black ;
 
         width: 1.6rem;
         height: 1.6rem;
@@ -27,11 +27,9 @@
 
     /* Checked */
     & input[type="radio"]:checked + label {
-        // background: $font-default;
-        // color: $white;
-        // border-color: $font-default;
-
-        border: $primary solid 4px;
+        background: $font-default;
+        color: $primary;
+        border-color: $font-default;
     }
 
     /* Hover */

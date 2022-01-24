@@ -1,45 +1,52 @@
 import { Component } from "react";
 import "./style.scss";
 
-class ItemAttributesColor extends Component {
+class ItemAttribute extends Component {
     constructor(props) {
         super(props);
 
-        console.log(props);
-
         this.state = {
+            isAvaliable: true,
+        };
+    }
+
+    componentDidMount() {
+        this.setState({
             id: this.props.id,
             title: this.props.title,
             name: this.props.name,
             icon: this.props.icon,
             isActive: this.props.isActive,
-        };
+            isChecked: false,
+            onChange: this.props.onChange
+        });
     }
 
     render() {
         return (
-            <div className="item-attributes-color">
+            <div className="item-attribute">
                 <input
-                    id={this.state.id + this.state.name}
                     type="radio"
+                    onChange={this.state.onChange}
+                    id={this.state.id + this.state.name}
                     name={this.state.id}
                     disabled={!this.state.isActive}
-                    value="4"
+                    value={this.state.name}
                 />
 
                 <label
                     style={{
-                        height: this.props.height + "px",
-                        width: this.props.width + "px",
-                        backgroundColor: this.props.name
+                        height: 50,
+                        width: 50,
                     }}
                     htmlFor={this.state.id + this.state.name}
                 >
-
+                    {/* {" "} */}
+                    {this.state.name}{" "}
                 </label>
             </div>
         );
     }
 }
 
-export default ItemAttributesColor;
+export default ItemAttribute;
