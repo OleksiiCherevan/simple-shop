@@ -1,6 +1,6 @@
 import "./style.scss";
 
-import { Component } from "react";
+import { Component, useEffect } from "react";
 
 import { useState } from "react/cjs/react.development";
 import { useSelector, useDispatch } from "react-redux";
@@ -126,7 +126,12 @@ const HeaderCartFunc = () => {
     const [totalPrice, setTotalPrice] = useState(0)
     const [products, setProducts] = useState([])
 
-    // const productsFromRedux = useSelector(state => state.productBag.products) 
+    const productsFromRedux = useSelector(state => state.productBag.products) 
+
+    useEffect(() => {
+        setProducts(productsFromRedux)
+        console.log(productsFromRedux);
+    }, [productsFromRedux])
 
     const onShowCartClick = (event) => {
         setIsShow(!isShow)
@@ -167,7 +172,7 @@ const HeaderCartFunc = () => {
                 {/* get count element  */}
                 {products.length ? (
                     <div className="header-cart__count">
-                        {0}
+                        {products.length}
                     </div>
                 ) : null}
 

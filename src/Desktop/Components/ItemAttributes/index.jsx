@@ -31,15 +31,12 @@ const ItemAttributes = (props) => {
     );
 
     useEffect(() => {
-        return () => {
-            dispatch(
-                setAttributes({
-                    attributes: selectedAttributes,
-                })
-            );
-            dispatch(clearAttributes());
-        };
-    }, []);
+        dispatch(
+            setAttributes({
+                attributes: selectedAttributes,
+            })
+        );
+    }, [selectedAttributes]);
 
     const onChagneAttribute = (attribute, value) => {
         let newAttributes = { ...selectedAttributes };

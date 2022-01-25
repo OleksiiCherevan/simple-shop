@@ -7,6 +7,7 @@ const productAttributesSlice = createSlice({
     },
     reducers: {
         setAttributes(state, action) {
+            console.log('action payload attributes' ,action.payload.attributes)
             state.attributes = action.payload.attributes;
         },
 
@@ -15,7 +16,7 @@ const productAttributesSlice = createSlice({
         },
 
         clearAttributes(state) {
-            state.attributes = []
+            state.attributes = {}
         },
     }
 })
