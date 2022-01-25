@@ -5,14 +5,13 @@ class ItemAttributesColor extends Component {
     constructor(props) {
         super(props);
 
-        console.log(props);
-
         this.state = {
+            attribute: this.props.attribute,
             id: this.props.id,
-            title: this.props.title,
-            name: this.props.name,
-            icon: this.props.icon,
-            isActive: this.props.isActive,
+            value: this.props.value,
+            
+            isActive: !this.props.isActive,
+            isChecked: this.props.isChecked,
         };
     }
 
@@ -20,23 +19,21 @@ class ItemAttributesColor extends Component {
         return (
             <div className="item-attribute-color">
                 <input
-                    onChange={this.props.onChange}
-                    id={this.state.id + this.state.name}
+                    id={this.state.attribute + this.state.value}
                     type="radio"
-                    name={this.state.id}
-                    disabled={!this.state.isActive}
-                    value={this.state.name}
+                    name={this.state.attribute}
+                    checked={this.state.isChecked}
+                    value={this.state.value}
                 />
 
                 <label
                     style={{
                         height: 50,
                         width: 50,
-                        backgroundColor: this.props.name
+                        backgroundColor: this.state.value
                     }}
-                    htmlFor={this.state.id + this.state.name}
+                    htmlFor={this.state.attribute + this.state.value}
                 >
-
                 </label>
             </div>
         );

@@ -7,8 +7,6 @@ const productBagSlice = createSlice({
     },
     reducers: {
         addProduct(state, action) {
-            console.log(state, action)
-
             state.products.push(action.payload.product)
         },
 

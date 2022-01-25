@@ -1,0 +1,48 @@
+@import "./../../../assets/styles/main-style.scss";
+
+.item-attribute-color {
+    // margin-right: 10px;
+    // font-size: $font-size-very-small;
+
+    & input[type="radio"] {
+        display: none;
+    }
+
+    & label {
+        display: inline-block;
+        cursor: pointer;
+        border: 0;
+        user-select: none;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 150%;
+        color:$black;
+
+        width: 1.6rem;
+        height: 1.6rem;
+    }
+
+    /* Checked */
+    & input[type="radio"]:checked + label {
+        // background: $font-default;
+        // color: $white;
+        // border-color: $font-default;
+
+        border: $primary solid 4px;
+    }
+
+    /* Hover */
+    & label:hover {
+        color: $light-gray;
+    }
+
+    /* Disabled */
+    & input[type="radio"]:disabled + label {
+        background: #a6a6a620;
+        border-color: $light-gray;
+        color: $light-gray;
+    }
+}

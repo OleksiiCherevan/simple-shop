@@ -3,6 +3,7 @@ import "./style.scss";
 import { Component } from "react";
 import ItemAttributes from "../ItemAttribute/indes";
 import { useState } from "react/cjs/react.development";
+import { useSelector } from "react-redux";
 
 // class ProductCard extends Component {
 //     constructor(props) {
@@ -99,8 +100,11 @@ const ProductCardFunc = (product) => {
         localStorage.getItem("currencyIndex") | 0
     );
 
+    const productsCart = useSelector(state => {
+        return state.productBag.products})
+
     useState(() => {
-        console.log(prices);
+        
     }, []);
 
     return inStock ? (

@@ -6,31 +6,24 @@ class ItemAttributeSize extends Component {
         super(props);
 
         this.state = {
-            isActive: true,
-        };
-    }
-
-    componentDidMount() {
-        this.setState({
+            attribute: this.props.attribute,
             id: this.props.id,
-            title: this.props.title,
-            name: this.props.name,
-            icon: this.props.icon,
-            isActive: this.props.isActive,
-            onChange: this.props.onChange
-        });
+            value: this.props.value,
+            
+            isActive: !this.props.isActive,
+            isChecked: this.props.isChecked,
+        };
     }
 
     render() {
         return (
             <div className="item-attribute-size">
                 <input
-                onChange={this.state.onChange}
-                    id={this.state.id + this.state.name}
-                    type="radio"
-                    name={this.state.id}
-                    disabled={!this.state.isActive}
-                    value={this.state.name}
+                   id={this.state.attribute + this.state.value}
+                   type="radio"
+                   name={this.state.attribute}
+                   checked={this.state.isChecked}
+                   value={this.state.value}
                 />
 
                 <label
@@ -38,10 +31,10 @@ class ItemAttributeSize extends Component {
                         height: 50,
                         width: 50,
                     }}
-                    htmlFor={this.state.id + this.state.name}
+                    htmlFor={this.state.attribute + this.state.value}
                 >
                     {/* {" "} */}
-                    {this.state.name}{" "}
+                    {this.state.value}{" "}
                 </label>
             </div>
         );

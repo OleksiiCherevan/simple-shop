@@ -2,10 +2,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 // import reducer 
 import productBagReducer from './productBagSlice'
+import productAttributeReducer from "./productAttributesSlice";
 
 export default configureStore({
     reducer: {
-        productBag: productBagReducer
+        productBag: productBagReducer,
+        productAttributes: productAttributeReducer,
     }
 })
 

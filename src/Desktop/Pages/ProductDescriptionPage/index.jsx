@@ -14,6 +14,8 @@ import {
     useQuery,
     gql,
 } from "@apollo/client";
+import { useDispatch, useSelector } from "react-redux";
+import { addProduct } from "../../../store/productBagSlice";
 
 // let products = [ProductA, ProductB];
 
@@ -157,9 +159,14 @@ const ProductDescriptionPageFunc = () => {
 
     const [mainImage, setMainImage] = useState(null);
     const [product, setProduct] = useState(null);
+
     const [currencyIndex, setCurrencyIndex] = useState(
         localStorage.getItem("currencyIndex") | 0
     );
+    const selectedAttributes = useSelector(
+        (state) => state.productAttributes.attributes
+    );
+    const dispatch = useDispatch()
 
     useEffect(() => {
         if (product) {
@@ -170,9 +177,20 @@ const ProductDescriptionPageFunc = () => {
     useEffect(() => {
         if (data) {
             setProduct(data.product);
-            console.log(data.product);
         }
     }, [data]);
+    
+
+    const onHandleBuyClick = () => {
+        let newProd = {
+            ...product,
+            selectedAttributes
+        }
+
+        dispatch(addProduct({
+            product: newProd
+        }))
+    }
 
     const onHandleHover = (event, index) => {
         setMainImage(product.gallery[index]);
@@ -221,7 +239,7 @@ const ProductDescriptionPageFunc = () => {
                 <div className="pdp__product-brand">{product.brand}</div>
                 <div className="pdp__product-name">{product.name}</div>
 
-                <ItemAttributes {...product}></ItemAttributes>
+                <ItemAttributes product={product}></ItemAttributes>
 
                 <div className="pdp__price">
                     <div className="pdp__price-title">PRICE:</div>
@@ -230,7 +248,7 @@ const ProductDescriptionPageFunc = () => {
                     </div>
                 </div>
 
-                <button className="pdp__add-to-cart">ADD TO CART</button>
+                <button className="pdp__add-to-cart" onClick={onHandleBuyClick}>ADD TO CART</button>
 
                 <div className="pdp__main-description">
                     <div
