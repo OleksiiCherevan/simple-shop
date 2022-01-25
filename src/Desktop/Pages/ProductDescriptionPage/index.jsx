@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 
 import ReactImageMagnify from "react-image-magnify";
 import ItemAttributes from "../../Components/ItemAttributes";
-import ItemAttributeColor from "../../Components/ItemAttributeColor/indes";
 
 import {
     ApolloClient,

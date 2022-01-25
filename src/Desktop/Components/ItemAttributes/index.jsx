@@ -9,8 +9,6 @@ import {
 } from "../../../store/productAttributesSlice";
 
 import ItemAttribute from "../ItemAttribute/indes";
-import ItemAttributeSize from "../../Components/ItemAttributeSize/indes";
-import ItemAttributeColor from "../../Components/ItemAttributeColor/indes";
 
 const getDefaultAttributes = (attributes) => {
     let resAttributes = {};
@@ -38,7 +36,8 @@ const ItemAttributes = (props) => {
         );
     }, [selectedAttributes]);
 
-    const onChagneAttribute = (attribute, value) => {
+    const onChangeAttribute = (attribute, value) => {
+        console.log(attribute, value)
         let newAttributes = { ...selectedAttributes };
         newAttributes[attribute] = value;
         setSelectedAttributes(newAttributes);
@@ -58,47 +57,58 @@ const ItemAttributes = (props) => {
                                 const selectedAttribute =
                                     selectedAttributes[attribute.id];
                                 return (
-                                    <div
+                                    <ItemAttribute
                                         key={item.id + selectedAttribute}
-                                        onClick={() =>
-                                            onChagneAttribute(
-                                                attribute.id,
-                                                item.id
-                                            )
+                                        onClick={onChangeAttribute}
+                                        attribute={attribute.id}
+                                        id={item.id}
+                                        value={item.value}
+                                        isChecked={
+                                            item.id === selectedAttribute
                                         }
-                                    >
-                                        {attribute.id == "Color" ? (
-                                            <ItemAttributeColor
-                                                attribute={attribute.id}
-                                                id={item.id}
-                                                value={item.value}
-                                                isChecked={
-                                                    item.id ===
-                                                    selectedAttribute
-                                                }
-                                            />
-                                        ) : attribute.id == "Size" ? (
-                                            <ItemAttributeSize
-                                                attribute={attribute.id}
-                                                id={item.id}
-                                                value={item.value}
-                                                isChecked={
-                                                    item.id ===
-                                                    selectedAttribute
-                                                }
-                                            ></ItemAttributeSize>
-                                        ) : (
-                                            <ItemAttribute
-                                                attribute={attribute.id}
-                                                id={item.id}
-                                                value={item.value}
-                                                isChecked={
-                                                    item.id ===
-                                                    selectedAttribute
-                                                }
-                                            ></ItemAttribute>
-                                        )}
-                                    </div>
+                                    />
+
+                                    // <div
+                                    //     key={item.id + selectedAttribute}
+                                    //     onClick={() =>
+                                    //         onChagneAttribute(
+                                    //             attribute.id,
+                                    //             item.id
+                                    //         )
+                                    //     }
+                                    // >
+                                    //     {attribute.id == "Color" ? (
+                                    //         <ItemAttributeColor
+                                    //             attribute={attribute.id}
+                                    //             id={item.id}
+                                    //             value={item.value}
+                                    //             isChecked={
+                                    //                 item.id ===
+                                    //                 selectedAttribute
+                                    //             }
+                                    //         />
+                                    //     ) : attribute.id == "Size" ? (
+                                    //         <ItemAttributeSize
+                                    //             attribute={attribute.id}
+                                    //             id={item.id}
+                                    //             value={item.value}
+                                    //             isChecked={
+                                    //                 item.id ===
+                                    //                 selectedAttribute
+                                    //             }
+                                    //         ></ItemAttributeSize>
+                                    //     ) : (
+                                    //         <ItemAttribute
+                                    //             attribute={attribute.id}
+                                    //             id={item.id}
+                                    //             value={item.value}
+                                    //             isChecked={
+                                    //                 item.id ===
+                                    //                 selectedAttribute
+                                    //             }
+                                    //         ></ItemAttribute>
+                                    //     )}
+                                    // </div>
                                 );
                             })}
                         </div>
