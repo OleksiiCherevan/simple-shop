@@ -189,7 +189,7 @@ const HeaderCartFunc = () => {
                         <div className="header-cart-menu__products">
                             {products
                                 ? products.map((product, index) => (
-                                      <CartCard key={{product, index}} product={product} />
+                                      <CartCard key={{product, index}} product={product} index={index} />
                                   ))
                                 : null}
                         </div>

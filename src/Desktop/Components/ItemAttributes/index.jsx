@@ -2,11 +2,10 @@ import "./style.scss";
 
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-    setAttributes,
-} from "../../../store/productAttributesSlice";
+import { setAttributes, updateAttributes } from "../../../store/productAttributesSlice";
 
 import ItemAttribute from "../ItemAttribute/indes";
+import { useSelector } from "react-redux";
 const getDefaultAttributes = (attributes) => {
     let resAttributes = {};
     for (let i = 0; i < attributes.length; i++) {
@@ -17,28 +16,40 @@ const getDefaultAttributes = (attributes) => {
 };
 
 const ItemAttributes = (props) => {
-    // 
+    const {product, parent, index} = {...props};
 
-    const product = props.product;
     const { attributes, selectedAttributes } = { ...product };
     const dispatch = useDispatch();
 
-    const [itemSelectedAttributes, setSelectedAttributes] = useState(
-        selectedAttributes ?? getDefaultAttributes(attributes)
-    );
+    const [itemSelectedAttributes, setItemSelectedAttributes] = useState({}) 
     
+    const storeSelectedAttributes = useSelector(state =>  {
+        let stateSelectedAttributes = state.productAttributes.attributes;
+        console.log(stateSelectedAttributes);
+
+        if(Object.keys(stateSelectedAttributes).length === 0) {
+            dispatch(
+                setAttributes({
+                    attributes: getDefaultAttributes(attributes)
+                })
+            )
+        } 
+
+        return stateSelectedAttributes
+    }) 
+
     useEffect(() => {
-        dispatch(
-            setAttributes({
-                attributes: itemSelectedAttributes,
-            })
-        );
-    }, [itemSelectedAttributes]);
+        console.log(storeSelectedAttributes)
+        setItemSelectedAttributes(storeSelectedAttributes)
+    }, [storeSelectedAttributes]);
 
     const onChangeAttribute = (attribute, value) => {
-        let newAttributes = { ...itemSelectedAttributes };
-        newAttributes[attribute] = value;
-        setSelectedAttributes(newAttributes);
+        dispatch(
+            updateAttributes({
+                attribute: attribute,
+                value: value,
+            })
+        );
     };
 
     return (
@@ -53,18 +64,20 @@ const ItemAttributes = (props) => {
                         <div className="item__attributes-attributes">
                             {attribute.items.map((item) => {
                                 const selectedAttribute =
-                                    itemSelectedAttributes[attribute.id];
+                                itemSelectedAttributes[attribute.id];
                                 return (
-                                    <ItemAttribute
-                                        key={item.id + selectedAttribute}
-                                        onClick={onChangeAttribute}
-                                        attribute={attribute.id}
-                                        id={item.id}
-                                        value={item.value}
-                                        isChecked={
-                                            item.id === selectedAttribute
-                                        }
-                                    />
+                                        <ItemAttribute
+                                            key={item.id + selectedAttribute}
+                                            onClick={onChangeAttribute}
+                                            attribute={attribute.id}
+                                            id={item.id}
+                                            value={item.value}
+                                            parent={parent}
+                                            index={index}
+                                            isChecked={
+                                                item.id === selectedAttribute
+                                            }
+                                        />
                                 );
                             })}
                         </div>

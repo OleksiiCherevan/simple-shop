@@ -14,8 +14,36 @@ class CartCard extends Component {
         this.state = {
             product: this.props.product,
             ...this.props.product,
+            index: this.props.index,
+            count: 1,            
         };
     }
+
+    onIncreseCount(count = 1) {
+        count = this.state.count +   count
+        count = count <= 99 ? count : 99
+        this.setState({
+            count: count
+        })
+    }
+
+    onDecreaseCount(count = 1) {
+        count = this.state.count-count
+        count = count > 0 ? count : 1;
+        this.setState({
+            count:  count
+        })
+    }
+
+    onCountChange(event) {
+        let count = event.target.value
+        count = count > 0 ? count : 1;
+        count = count <= 99 ? count : 99
+        this.setState({
+            count: count
+        })
+    }
+
 
     render() {
         console.log(" ");
@@ -37,14 +65,16 @@ class CartCard extends Component {
                     <div className="cart-card__attributes-wrapper">
                         <ItemAttributes
                             product={this.state.product}
+                            parent={'cart'}
+                            index={this.state.index}
                         ></ItemAttributes>
                     </div>
                 </div>
 
                 <div className="cart-card__count-manager">
-                    <div className="cart-card__square">+</div>
-                    <div className="cart-card__count">4</div>
-                    <div className="cart-card__square">-</div>
+                    <div className="cart-card__square" onClick={() => this.onIncreseCount()}>+</div>
+                    <input className="cart-card__count" type='text' value={this.state.count} onChange={(event) => this.onCountChange(event)}></input>
+                    <div className="cart-card__square" onClick={() => this.onDecreaseCount()}>-</div>
                 </div>
 
                 <img

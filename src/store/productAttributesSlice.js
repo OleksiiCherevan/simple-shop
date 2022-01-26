@@ -8,10 +8,13 @@ const productAttributesSlice = createSlice({
     reducers: {
         setAttributes(state, action) {
             state.attributes = action.payload.attributes;
+            console.log(state)
         },
 
-        addAttributes(state, action) {
-            state.attributes[action.payload.id] = action.payload.attribute;
+        updateAttributes(state, action) {
+            const {attribute, value} = action.payload
+            state.attributes[attribute] = value;
+            console.log(state);
         },
 
         clearAttributes(state) {
@@ -20,6 +23,6 @@ const productAttributesSlice = createSlice({
     }
 })
 
-export const { setAttributes ,addAttributes, clearAttributes } = productAttributesSlice.actions;
+export const { setAttributes ,updateAttributes, clearAttributes } = productAttributesSlice.actions;
 
 export default productAttributesSlice.reducer;

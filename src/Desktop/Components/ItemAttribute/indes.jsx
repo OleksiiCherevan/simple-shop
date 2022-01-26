@@ -11,6 +11,9 @@ class ItemAttribute extends Component {
             id: this.props.id,
             value: this.props.value,
 
+            parent: this.props.parent,
+            index: this.props.index,
+
             isActive: !this.props.isActive,
             isChecked: this.props.isChecked,
         };
@@ -25,7 +28,9 @@ class ItemAttribute extends Component {
                     width: 50,
                     backgroundColor: this.state.value,
                 }}
-                htmlFor={this.state.attribute + this.state.value}
+                htmlFor={
+                    this.state.attribute + this.state.id + this.state.index
+                }
             ></label>
         );
     }
@@ -39,7 +44,9 @@ class ItemAttribute extends Component {
                     width: 50,
                     backgroundColor: this.state.value,
                 }}
-                htmlFor={this.state.attribute + this.state.value}
+                htmlFor={
+                    this.state.attribute + this.state.id + this.state.index
+                }
             >
                 {this.state.value}
             </label>
@@ -47,21 +54,21 @@ class ItemAttribute extends Component {
     }
 
     render() {
-        console.log(this.state)
-        console.log('id', this.state.id)
-        console.log('att', this.state.attribute);
         return (
             <div className="item-attribute">
                 <input
                     className="item-attribute__input"
-                    onChange={() =>
-                        this.state.onClick(this.state.attribute, this.state.id)
+                    onChange={() =>{}}
+                    onClick={() => this.state.onClick(this.state.attribute, this.state.id)}
+                    id={
+                        this.state.attribute + 
+                        this.state.id +
+                        this.state.index
                     }
-                    id={this.state.attribute + this.state.value}
                     type="radio"
-                    name={this.state.attribute}
+                    name={this.state.parent + this.state.attribute + this.state.index}
                     checked={this.state.isChecked}
-                    value={this.state.value}
+                    value={this.state.parent + this.state.attribute + this.state.index}
                 />
 
                 {this.state.attribute == "Color"

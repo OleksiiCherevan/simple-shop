@@ -67,6 +67,9 @@
     right: 0rem;
     z-index: 100;
     
+    max-height: 80vh;
+    overflow-y: auto;
+
     background: $white;
     
     display: flex;
@@ -84,7 +87,6 @@
     }
 
     &__products {
-        overflow-y: auto;
         margin-top: 1rem;
         display: flex;
         flex-direction: column;
