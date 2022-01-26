@@ -157,15 +157,14 @@ const ProductDescriptionPageFunc = () => {
     `;
     const { loading, error, data } = useQuery(PRODUCT_FROM_ID);
 
+    const dispatch = useDispatch()
+
     const [mainImage, setMainImage] = useState(null);
     const [product, setProduct] = useState(null);
 
     const currencyIndex = useSelector(state => state.currencyIndex.currencyIndex)
 
-    const selectedAttributes = useSelector(
-        (state) => state.productAttributes.attributes
-    );
-    const dispatch = useDispatch()
+    const [selectedAttributes, setSelectedAttributes] = useState()
 
     useEffect(() => {
         if (product) {
@@ -178,6 +177,10 @@ const ProductDescriptionPageFunc = () => {
             setProduct(data.product);
         }
     }, [data]);
+
+    const onAttributesChange = (attributes) => {
+        setSelectedAttributes(attributes)
+    }
     
 
     const onHandleBuyClick = () => {
@@ -239,7 +242,7 @@ const ProductDescriptionPageFunc = () => {
                 <div className="pdp__product-brand">{product.brand}</div>
                 <div className="pdp__product-name">{product.name}</div>
 
-                <ItemAttributes product={product}></ItemAttributes>
+                <ItemAttributes product={product} onAttributesChange={onAttributesChange}></ItemAttributes>
 
                 <div className="pdp__price">
                     <div className="pdp__price-title">PRICE:</div>
