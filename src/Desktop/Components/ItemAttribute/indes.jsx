@@ -47,6 +47,9 @@ class ItemAttribute extends Component {
     }
 
     render() {
+        console.log(this.state)
+        console.log('id', this.state.id)
+        console.log('att', this.state.attribute);
         return (
             <div className="item-attribute">
                 <input

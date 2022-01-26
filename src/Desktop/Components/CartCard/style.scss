@@ -7,12 +7,12 @@
     justify-content: flex-end;
     align-items: center;
 
-    height: 12rem;
+    min-height: 12rem;
 
     gap: 0.5rem;
 
     &:hover {
-     }
+    }
 
     &__info {
         height: 100%;
@@ -38,17 +38,24 @@
         font-weight: 500;
     }
 
-    
+    &__attributes-wrapper {
+        padding: 0.3rem;
+        margin-right: 1rem;
+        width: 100%;
+        // overflow-y: hidden;
+
+        overflow-x: auto;
+    }
 
     &__count-manager {
         flex: 2;
+        display: block;
+        height: 12rem;
         max-width: 2rem;
-        height: 100%;
 
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-
     }
 
     &__square {
@@ -70,7 +77,6 @@
         font-size: $font-size-primary;
         font-weight: $font-medium;
         text-align: center;
-
     }
 
     &__image {

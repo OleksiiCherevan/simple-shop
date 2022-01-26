@@ -2,10 +2,10 @@ import "./style.scss";
 // import { Component } from "react";
 import { useState } from "react/cjs/react.development";
 
-import {
-    useQuery,
-    gql,
-} from "@apollo/client";
+import { useQuery, gql } from "@apollo/client";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { setCurrencyIndex } from "../../../store/currencyIndexSlice";
 
 // at first i`m trying to use class but then i found a better way to work with graphal with useQuery
 // i prefer to use a better instrument for this element
@@ -94,20 +94,22 @@ const CurrencyFunc = () => {
     `;
 
     const { loading, error, data } = useQuery(CURRENCIES_QUERY);
-
     const [isOpen, setIsOpen] = useState(false);
 
-    const [currencyIndex, setCurrencyIndex] = useState(
-        localStorage.getItem("currencyIndex") | 0
-    );
+    const dispatch = useDispatch();
+
+    const currencyIndex = useSelector((state) => state.currencyIndex.currencyIndex);
 
     const onCurrencyChange = (currency, index) => {
-        localStorage.setItem("currencyIndex", index);
-        setCurrencyIndex(index);
-        window.location.reload();
+        dispatch(
+            setCurrencyIndex({
+                currencyIndex: index,
+            })
+        );
     };
 
     if (loading) return <div>Loading</div>;
+
     if (error) return <div>Error</div>;
 
     return (

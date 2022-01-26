@@ -4,10 +4,9 @@ import { Component, useEffect } from "react";
 
 import { useState } from "react/cjs/react.development";
 import { useSelector, useDispatch } from "react-redux";
-import { addProduct } from "../../../store/productBagSlice";
+import { addProduct, setProducts } from "../../../store/productBagSlice";
 
 import CartCard from "../CartCard";
-
 
 // class HeaderCart extends Component {
 //     constructor(props) {
@@ -24,7 +23,7 @@ import CartCard from "../CartCard";
 //     }
 
 //     componentDidMount() {
-        
+
 //     }
 
 //     onShowCartClick(event) {
@@ -122,25 +121,26 @@ import CartCard from "../CartCard";
 // }
 
 const HeaderCartFunc = () => {
-    const [isShow, setIsShow] = useState(false)
-    const [totalPrice, setTotalPrice] = useState(0)
-    const [products, setProducts] = useState([])
+    const [isShow, setIsShow] = useState(false);
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [products, setProducts] = useState([]);
 
-    const productsFromRedux = useSelector(state => state.productBag.products) 
+    const dispacth = useDispatch();
+
+    const storageProducts = useSelector((state) => state.productBag.products);
 
     useEffect(() => {
-        setProducts(productsFromRedux)
-        console.log(productsFromRedux);
-    }, [productsFromRedux])
+        setProducts(storageProducts);
+    }, [storageProducts]);
 
     const onShowCartClick = (event) => {
-        setIsShow(!isShow)
-    }
+        setIsShow(!isShow);
+    };
+
     return (
         <>
             {isShow ? (
                 <>
-                    {/* <div className="header-cart__currency-hidder"></div> */}
                     <div
                         className="header-cart__background"
                         onClick={onShowCartClick}
@@ -149,7 +149,7 @@ const HeaderCartFunc = () => {
             ) : null}
 
             <div className="header-cart" onClick={onShowCartClick}>
-            <svg
+                <svg
                     width="20"
                     height="20"
                     viewBox="0 0 20 20"
@@ -169,11 +169,8 @@ const HeaderCartFunc = () => {
                         fill="#43464E"
                     />
                 </svg>
-                {/* get count element  */}
                 {products.length ? (
-                    <div className="header-cart__count">
-                        {products.length}
-                    </div>
+                    <div className="header-cart__count">{products.length}</div>
                 ) : null}
 
                 {isShow ? (
@@ -190,12 +187,11 @@ const HeaderCartFunc = () => {
                         </div>
 
                         <div className="header-cart-menu__products">
-                            {products.slice().map((product) => (
-                                <CartCard
-                                    key={product.title}
-                                    product={product}
-                                />
-                            ))}
+                            {products
+                                ? products.map((product, index) => (
+                                      <CartCard key={{product, index}} product={product} />
+                                  ))
+                                : null}
                         </div>
 
                         <div className="header-cart-menu__total">
@@ -220,6 +216,6 @@ const HeaderCartFunc = () => {
             </div>
         </>
     );
-}
+};
 
 export default HeaderCartFunc;

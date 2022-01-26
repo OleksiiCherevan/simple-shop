@@ -96,16 +96,11 @@ const ProductCardFunc = (product) => {
         brand,
     } = { ...product };
 
-    const [indexCurrency, setIndexCurrency] = useState(
-        localStorage.getItem("currencyIndex") | 0
+    const indexCurrency = useSelector(
+        (state) => state.currencyIndex.currencyIndex
     );
 
-    const productsCart = useSelector(state => {
-        return state.productBag.products})
-
-    useState(() => {
-        
-    }, []);
+    useState(() => {}, []);
 
     return inStock ? (
         <>

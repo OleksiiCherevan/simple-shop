@@ -13,6 +13,7 @@ import {
     useQuery,
     gql,
 } from "@apollo/client";
+
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../../../store/productBagSlice";
 
@@ -159,9 +160,8 @@ const ProductDescriptionPageFunc = () => {
     const [mainImage, setMainImage] = useState(null);
     const [product, setProduct] = useState(null);
 
-    const [currencyIndex, setCurrencyIndex] = useState(
-        localStorage.getItem("currencyIndex") | 0
-    );
+    const currencyIndex = useSelector(state => state.currencyIndex.currencyIndex)
+
     const selectedAttributes = useSelector(
         (state) => state.productAttributes.attributes
     );
@@ -183,7 +183,8 @@ const ProductDescriptionPageFunc = () => {
     const onHandleBuyClick = () => {
         let newProd = {
             ...product,
-            selectedAttributes
+            selectedAttributes,
+            currencyIndex
         }
 
         dispatch(addProduct({

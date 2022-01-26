@@ -7,9 +7,7 @@
     &__input {
         display: none;
         /* Checked */
-        &:checked + .item-attribute__label {
-            // background: $font-default;
-            // color: $primary;
+        &:checked + .item-attribute__label {    
             border-bottom: 7px solid $light-gray;
             top: -7px;
         
@@ -29,9 +27,8 @@
     }
 
     &__label {
-        position: relative;
-
         display: inline-block;
+        
         cursor: pointer;
         border-radius: 5%;
         user-select: none;

@@ -3,13 +3,10 @@ import "./style.scss";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
-    addAttributes,
-    clearAttributes,
     setAttributes,
 } from "../../../store/productAttributesSlice";
 
 import ItemAttribute from "../ItemAttribute/indes";
-
 const getDefaultAttributes = (attributes) => {
     let resAttributes = {};
     for (let i = 0; i < attributes.length; i++) {
@@ -20,25 +17,26 @@ const getDefaultAttributes = (attributes) => {
 };
 
 const ItemAttributes = (props) => {
+    // 
+
     const product = props.product;
-    const { attributes } = { ...product };
+    const { attributes, selectedAttributes } = { ...product };
     const dispatch = useDispatch();
 
-    const [selectedAttributes, setSelectedAttributes] = useState(
-        getDefaultAttributes(attributes)
+    const [itemSelectedAttributes, setSelectedAttributes] = useState(
+        selectedAttributes ?? getDefaultAttributes(attributes)
     );
-
+    
     useEffect(() => {
         dispatch(
             setAttributes({
-                attributes: selectedAttributes,
+                attributes: itemSelectedAttributes,
             })
         );
-    }, [selectedAttributes]);
+    }, [itemSelectedAttributes]);
 
     const onChangeAttribute = (attribute, value) => {
-        console.log(attribute, value)
-        let newAttributes = { ...selectedAttributes };
+        let newAttributes = { ...itemSelectedAttributes };
         newAttributes[attribute] = value;
         setSelectedAttributes(newAttributes);
     };
@@ -55,7 +53,7 @@ const ItemAttributes = (props) => {
                         <div className="item__attributes-attributes">
                             {attribute.items.map((item) => {
                                 const selectedAttribute =
-                                    selectedAttributes[attribute.id];
+                                    itemSelectedAttributes[attribute.id];
                                 return (
                                     <ItemAttribute
                                         key={item.id + selectedAttribute}
@@ -67,48 +65,6 @@ const ItemAttributes = (props) => {
                                             item.id === selectedAttribute
                                         }
                                     />
-
-                                    // <div
-                                    //     key={item.id + selectedAttribute}
-                                    //     onClick={() =>
-                                    //         onChagneAttribute(
-                                    //             attribute.id,
-                                    //             item.id
-                                    //         )
-                                    //     }
-                                    // >
-                                    //     {attribute.id == "Color" ? (
-                                    //         <ItemAttributeColor
-                                    //             attribute={attribute.id}
-                                    //             id={item.id}
-                                    //             value={item.value}
-                                    //             isChecked={
-                                    //                 item.id ===
-                                    //                 selectedAttribute
-                                    //             }
-                                    //         />
-                                    //     ) : attribute.id == "Size" ? (
-                                    //         <ItemAttributeSize
-                                    //             attribute={attribute.id}
-                                    //             id={item.id}
-                                    //             value={item.value}
-                                    //             isChecked={
-                                    //                 item.id ===
-                                    //                 selectedAttribute
-                                    //             }
-                                    //         ></ItemAttributeSize>
-                                    //     ) : (
-                                    //         <ItemAttribute
-                                    //             attribute={attribute.id}
-                                    //             id={item.id}
-                                    //             value={item.value}
-                                    //             isChecked={
-                                    //                 item.id ===
-                                    //                 selectedAttribute
-                                    //             }
-                                    //         ></ItemAttribute>
-                                    //     )}
-                                    // </div>
                                 );
                             })}
                         </div>
