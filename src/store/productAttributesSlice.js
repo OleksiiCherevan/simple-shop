@@ -1,28 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const productAttributesSlice = createSlice({
-    name: 'productAttributes',
+    name: "productAttributes",
     initialState: {
         attributes: {},
     },
     reducers: {
         setAttributes(state, action) {
-            state.attributes = action.payload.attributes;
-            console.log(state)
+            const { attributes } = action.payload.attributes;
+            state.attributes = attributes;
         },
 
         updateAttributes(state, action) {
-            const {attribute, value} = action.payload
+            const { attribute, value } = action.payload;
             state.attributes[attribute] = value;
-            console.log(state);
         },
 
         clearAttributes(state) {
-            state.attributes = {}
+            state.attributes = {};
         },
-    }
-})
+    },
+});
 
-export const { setAttributes ,updateAttributes, clearAttributes } = productAttributesSlice.actions;
+export const { setAttributes, updateAttributes, clearAttributes } =
+    productAttributesSlice.actions;
 
 export default productAttributesSlice.reducer;

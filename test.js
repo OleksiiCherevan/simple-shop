@@ -1,16 +1,4 @@
-let attributes = [
-    {
-        id: 'color',
-        type: 'white',
-    },
-    {
-        id: 'size',
-        type: 'M'
-    }
-]
+let arr = [{a: 2}, {b: 1}]
 
-let obj = {}
-obj['color'] = 'white'
-obj['color'] = 'black'
-
-console.log(obj);
+let res = Array.findIndex(arr, {a: 2})
+console.log(res);

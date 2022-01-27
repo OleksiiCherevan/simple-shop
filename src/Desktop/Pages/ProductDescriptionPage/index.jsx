@@ -187,9 +187,10 @@ const ProductDescriptionPageFunc = () => {
         let newProd = {
             ...product,
             selectedAttributes,
-            currencyIndex
+            currencyIndex,
+            count: 1
         }
-
+        console.log(newProd);
         dispatch(addProduct({
             product: newProd
         }))

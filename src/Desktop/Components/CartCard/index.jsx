@@ -1,90 +1,126 @@
 import "./style.scss";
 
-import { Component } from "react";
+import { Component, useEffect } from "react";
 
 import ItemAttributes from "../ItemAttributes";
 
-// Template
+import { increseProductCount, decreaseProductCount, setProducts } from "../../../store/productBagSlice";
 import ProductA from "./../../../assets/images/product-images/Product-C.png";
+import { useState } from "react/cjs/react.development";
+import { useDispatch, useSelector } from "react-redux";
 
-class CartCard extends Component {
-    constructor(props) {
-        super(props);
+// class CartCard extends Component {
+//     constructor(props) {
+//         super(props);
 
-        this.state = {
-            product: this.props.product,
-            ...this.props.product,
-            index: this.props.index,
-            count: 1,            
-        };
+//         state = {
+//             product: props.product,
+//             ...props.product,
+//             index: props.index,
+//             count: 1,
+//         };
+//     }
+
+const CartCard = ({product, index}) => {
+    const {name, prices, title, currencyIndex} = {...product}
+
+    const [count, setCount] = useState(1)
+
+    const products = useSelector(state => state.productBag.products);
+
+    const dispacth = useDispatch()
+
+    useEffect((products = []  ) => { 
+        // let {...foundProduct} = {...products.find(prod => prod === product)}
+        // foundProduct.count = foundProduct.count + 1
+
+        // let newProducts = [
+        //     ...products,
+        //     foundProduct
+        // ]
+
+        // dispacth(setProducts({
+        //     products: newProducts
+        // }))
+    }, [count]);
+
+    const onIncreseCount = () => {
+        let value = count ;
+        value = value+1 <= 99 ? value+1 : 99;
+
+        setCount(value)
+
+        // dispacth(increseProductCount({
+        //     product
+        // }))
+    };
+
+    const onDecreaseCount = () => {
+        let value = count ;
+        value = value-1 > 0 ? value-1 : 1;
+        
+        setCount(value)
+        // dispacth(decreaseProductCount({
+        //     product
+        // }))
     }
 
-    onIncreseCount(count = 1) {
-        count = this.state.count +   count
-        count = count <= 99 ? count : 99
-        this.setState({
-            count: count
-        })
-    }
+    const onCountChange = (event) => {
+        let value = event.target.value;
+        value = value > 0 ? value : 1;
+        value = value <= 99 ? value : 99;
+        setCount(value)
+    };
 
-    onDecreaseCount(count = 1) {
-        count = this.state.count-count
-        count = count > 0 ? count : 1;
-        this.setState({
-            count:  count
-        })
-    }
-
-    onCountChange(event) {
-        let count = event.target.value
-        count = count > 0 ? count : 1;
-        count = count <= 99 ? count : 99
-        this.setState({
-            count: count
-        })
-    }
-
-
-    render() {
-        console.log(" ");
-        console.log(this.state.product);
-        return (
-            <div className="cart-card">
-                <div className="cart-card__info">
-                    <div className="cart-card__title">{this.state.name}</div>
-                    <div className="cart-card__price">
-                        {" "}
-                        {`${
-                            this.state.prices[this.state.currencyIndex].currency
-                                .symbol
-                        } ${
-                            this.state.prices[this.state.currencyIndex].amount
-                        }`}
-                    </div>
-
-                    <div className="cart-card__attributes-wrapper">
-                        <ItemAttributes
-                            product={this.state.product}
-                            parent={'cart'}
-                            index={this.state.index}
-                        ></ItemAttributes>
-                    </div>
+    return (
+        <div className="cart-card">
+            <div className="cart-card__info">
+                <div className="cart-card__title">{name}</div>
+                <div className="cart-card__price">
+                    {" "}
+                    {`${
+                        prices[currencyIndex].currency
+                            .symbol
+                    } ${prices[currencyIndex].amount}`}
                 </div>
 
-                <div className="cart-card__count-manager">
-                    <div className="cart-card__square" onClick={() => this.onIncreseCount()}>+</div>
-                    <input className="cart-card__count" type='text' value={this.state.count} onChange={(event) => this.onCountChange(event)}></input>
-                    <div className="cart-card__square" onClick={() => this.onDecreaseCount()}>-</div>
+                <div className="cart-card__attributes-wrapper">
+                    <ItemAttributes
+                        product={product}
+                        parent={"cart"}
+                        index={index}
+                    ></ItemAttributes>
                 </div>
-
-                <img
-                    className="cart-card__image"
-                    src={ProductA}
-                    alt={this.state.title}
-                ></img>
             </div>
-        );
-    }
-}
+
+            <div className="cart-card__count-manager">
+                <div
+                    className="cart-card__square"
+                    onClick={() => onIncreseCount()}
+                >
+                    +
+                </div>
+                <input
+                    className="cart-card__count"
+                    type="text"
+                    value={count}
+                    onChange={(event) => onCountChange(event)}
+                ></input>
+                <div
+                    className="cart-card__square"
+                    onClick={() => onDecreaseCount()}
+                >
+                    -
+                </div>
+            </div>
+
+            <img
+                className="cart-card__image"
+                src={ProductA}
+                alt={title}
+            ></img>
+        </div>
+    );
+};
 
 export default CartCard;

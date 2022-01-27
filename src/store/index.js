@@ -10,7 +10,6 @@ export default configureStore({
         currencyIndex: currencyIndexSlice,
         productBag: productBagReducer,
         productAttributes: productAttributeReducer, 
-
     }
 })
 
