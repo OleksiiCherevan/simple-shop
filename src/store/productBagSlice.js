@@ -12,6 +12,7 @@ const getTotalPrice = (products) => {
     return res.toFixed(2);
 };
 
+
 const getTotalCount = (products) => {
     if (products.length === 0) return 0;
 
@@ -21,6 +22,7 @@ const getTotalCount = (products) => {
 
     return res;
 };
+
 
 const getIndexOfProduct = (products, product) => {
     let res = Array.from(products).findIndex((prod) => {
@@ -39,6 +41,7 @@ const getIndexOfProduct = (products, product) => {
     return res;
 };
 
+
 const getProductsWithNewProductCount = (products, product, count) => {
     let indexOfProduct = getIndexOfProduct(products, product);
 
@@ -51,6 +54,7 @@ const getProductsWithNewProductCount = (products, product, count) => {
     return newProducts;
 };
 
+
 const getProductsWithoutProduct = (products, product) => {
     let arrayProducts = Array.from(products);
     let indexProductToChange = arrayProducts.indexOf(product);
@@ -58,6 +62,7 @@ const getProductsWithoutProduct = (products, product) => {
 
     return arrayProducts;
 };
+
 
 const productBagSlice = createSlice({
     name: "productBag",
@@ -71,24 +76,24 @@ const productBagSlice = createSlice({
             const { product } = action.payload;
             const { products } = state;
 
-            // let indexOfProduct = getIndexOfProduct(products, product);
+            let indexOfProduct = getIndexOfProduct(products, product);
 
-            // if (indexOfProduct < 0) {
-            //     state.products.push(product);
-            // } else {
-            //     let newProducts = getProductsWithNewProductCount(
-            //         products,
-            //         product,
-            //         products[indexOfProduct].count + 1
-            //     );
+            if (indexOfProduct < 0) {
+                state.products.push(product);
+                state.totalPrice = getTotalPrice(products);
+                state.totalCount = getTotalCount(products);
+            } else {
+                let newProducts = getProductsWithNewProductCount(
+                    products,
+                    product,
+                    products[indexOfProduct].count + 1
+                );
 
-            //     state.products = newProducts;
-            // }
-
-            state.products.push(product);
-            
-            state.totalPrice = getTotalPrice(products);
-            state.totalCount = getTotalCount(products);
+                state.products = newProducts;
+                state.totalPrice = getTotalPrice(newProducts);
+                state.totalCount = getTotalCount(newProducts);
+            } 
+           
         },
 
         setProducts(state, action) {
@@ -163,8 +168,6 @@ const productBagSlice = createSlice({
         },
     },
 });
-
-// export const { addProduct, removeProduct, increseProductCount, decreaseProductCount } = productBagSlice.actions;
 
 export const {
     addProduct,

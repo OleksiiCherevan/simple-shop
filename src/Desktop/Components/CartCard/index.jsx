@@ -16,23 +16,16 @@ import ProductA from "./../../../assets/images/product-images/Product-C.png";
 import { useState } from "react/cjs/react.development";
 import { useDispatch, useSelector } from "react-redux";
 
-// class CartCard extends Component {
-//     constructor(props) {
-//         super(props);
-
-//         state = {
-//             product: props.product,
-//             ...props.product,
-//             index: props.index,
-//             count: 1,
-//         };
-//     }
+const MAX_COUNT = 99;
 
 const CartCard = ({ product, index }) => {
     const dispacth = useDispatch();
     const { name, prices, title, count } = { ...product }; 
     const { currencyIndex } = useSelector(state => state.currencyIndex)   
-    // const { products } = useSelector((state) => state.productBag);
+    
+
+    
+
 
     const setStoreProductCount = (product, count) => {
         dispacth(
@@ -43,11 +36,13 @@ const CartCard = ({ product, index }) => {
         );
     };
 
+
     const onIncreseCount = () => {
       dispacth(increaseProductCount({
           product
       }))
     };
+
 
     const onDecreaseCount = () => {
         dispacth(decreaseProductCount({
@@ -55,15 +50,22 @@ const CartCard = ({ product, index }) => {
         }))
     };
 
+
     const onCountChange = (event) => {
-        setStoreProductCount(product, event.target.value) 
+        let value = event.target.value
+        console.log(value);
+
+        value = (value - 1 > 0) ? value : 1;
+        value = (value - (-1) <= MAX_COUNT) ? value : MAX_COUNT;
+
+        console.log(value);
+        setStoreProductCount(product, value) 
     };
 
-    const getTotalCardPrice = () => {
-        let totalPrice = product.prices[currencyIndex].amount * count
-            return totalPrice.toFixed(2)
-    }
 
+    const getTotalCardPrice = () =>  (product.prices[currencyIndex].amount * count).toFixed(2)
+
+    
     return (
         <div className="cart-card">
             <div className="cart-card__info">
