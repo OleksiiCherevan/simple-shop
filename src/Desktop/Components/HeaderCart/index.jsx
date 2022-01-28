@@ -122,12 +122,12 @@ import CartCard from "../CartCard";
 
 const HeaderCartFunc = () => {
     const [isShow, setIsShow] = useState(false);
-    const [totalPrice, setTotalPrice] = useState(0);
     const [products, setProducts] = useState([]);
 
     const dispacth = useDispatch();
 
     const storageProducts = useSelector((state) => state.productBag.products);
+    const totalPrice = useSelector(state => state.productBag.totalPrice)
 
     useEffect(() => {
         setProducts(storageProducts);
@@ -189,7 +189,9 @@ const HeaderCartFunc = () => {
                         <div className="header-cart-menu__products">
                             {products
                                 ? products.map((product, index) => (
+                                    <>
                                       <CartCard key={{product, index}} product={product} index={index} />
+                                    </>
                                   ))
                                 : null}
                         </div>

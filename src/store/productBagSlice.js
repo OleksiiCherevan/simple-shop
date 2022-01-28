@@ -1,9 +1,10 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 
 const getTotalPrice = (products) => {
-    return products.reduce((accum, item) => {
-        return accum + (item * item.count)
+    let res = products.reduce((accum, item) => {
+        return accum + item.prices[item.currencyIndex].amount * item.count
     }, 0)
+    return res.toFixed(2)
 }
 
 const productBagSlice = createSlice({
@@ -24,7 +25,7 @@ const productBagSlice = createSlice({
             const { products } = action.payload;
             state.products = products;
 
-            state.totalPrice = getTotalPrice(products)
+            state.totalPrice = getTotalPrice(state.products)
         },
 
         // increseProductCount(state, action) {

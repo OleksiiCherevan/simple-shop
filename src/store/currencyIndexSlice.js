@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const productCurrencyIndex = createSlice({
-    name: 'productCurrencyIndex',
+const currencyIndex = createSlice({
+    name: 'currencyIndex',
     initialState: {
         currencyIndex: 0,
     },
@@ -12,6 +12,6 @@ const productCurrencyIndex = createSlice({
     }
 })
 
-export const { setCurrencyIndex } = productCurrencyIndex.actions;
+export const { setCurrencyIndex } = currencyIndex.actions;
 
-export default productCurrencyIndex.reducer;
+export default currencyIndex.reducer;

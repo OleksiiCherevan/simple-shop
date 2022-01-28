@@ -4,7 +4,11 @@ import { Component, useEffect } from "react";
 
 import ItemAttributes from "../ItemAttributes";
 
-import { increseProductCount, decreaseProductCount, setProducts } from "../../../store/productBagSlice";
+import {
+    increseProductCount,
+    decreaseProductCount,
+    setProducts,
+} from "../../../store/productBagSlice";
 import ProductA from "./../../../assets/images/product-images/Product-C.png";
 import { useState } from "react/cjs/react.development";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,55 +25,50 @@ import { useDispatch, useSelector } from "react-redux";
 //         };
 //     }
 
-const CartCard = ({product, index}) => {
-    const {name, prices, title, currencyIndex} = {...product}
+const CartCard = ({ product, index }) => {
+    const { name, prices, title, currencyIndex, count } = { ...product };
 
-    const [count, setCount] = useState(1)
+    const [cardCount, setCardCount] = useState(count);
 
-    const products = useSelector(state => state.productBag.products);
+    const products = useSelector((state) => state.productBag.products);
 
-    const dispacth = useDispatch()
+    const dispacth = useDispatch();
 
-    useEffect((products = []  ) => { 
-        // let {...foundProduct} = {...products.find(prod => prod === product)}
-        // foundProduct.count = foundProduct.count + 1
+    useEffect(() => {
+        let indexOfProduct = products.findIndex((prod) => Object.entries(prod).toString() ===
+                Object.entries(product).toString());
+        console.log(indexOfProduct);
 
-        // let newProducts = [
-        //     ...products,
-        //     foundProduct
-        // ]
+        let newProducts = [...products]
+        let oldStoreProduct = newProducts[indexOfProduct]
+        newProducts[indexOfProduct] = {...oldStoreProduct}
+        newProducts[indexOfProduct].count = cardCount;
 
-        // dispacth(setProducts({
-        //     products: newProducts
-        // }))
-    }, [count]);
+        dispacth(setProducts({
+            products: newProducts
+        }))
+
+    }, [cardCount]);
 
     const onIncreseCount = () => {
-        let value = count ;
-        value = value+1 <= 99 ? value+1 : 99;
+        let value = cardCount;
+        value = value + 1 <= 99 ? value + 1 : 99;
 
-        setCount(value)
-
-        // dispacth(increseProductCount({
-        //     product
-        // }))
+        setCardCount(value);
     };
 
     const onDecreaseCount = () => {
-        let value = count ;
-        value = value-1 > 0 ? value-1 : 1;
-        
-        setCount(value)
-        // dispacth(decreaseProductCount({
-        //     product
-        // }))
-    }
+        let value = cardCount;
+        value = value - 1 > 0 ? value - 1 : 1;
+
+        setCardCount(value);
+    };
 
     const onCountChange = (event) => {
         let value = event.target.value;
         value = value > 0 ? value : 1;
         value = value <= 99 ? value : 99;
-        setCount(value)
+        setCardCount(value);
     };
 
     return (
@@ -78,10 +77,7 @@ const CartCard = ({product, index}) => {
                 <div className="cart-card__title">{name}</div>
                 <div className="cart-card__price">
                     {" "}
-                    {`${
-                        prices[currencyIndex].currency
-                            .symbol
-                    } ${prices[currencyIndex].amount}`}
+                    {`${prices[currencyIndex].currency.symbol} ${prices[currencyIndex].amount}`}
                 </div>
 
                 <div className="cart-card__attributes-wrapper">
@@ -103,7 +99,7 @@ const CartCard = ({product, index}) => {
                 <input
                     className="cart-card__count"
                     type="text"
-                    value={count}
+                    value={cardCount}
                     onChange={(event) => onCountChange(event)}
                 ></input>
                 <div
@@ -114,11 +110,7 @@ const CartCard = ({product, index}) => {
                 </div>
             </div>
 
-            <img
-                className="cart-card__image"
-                src={ProductA}
-                alt={title}
-            ></img>
+            <img className="cart-card__image" src={ProductA} alt={title}></img>
         </div>
     );
 };

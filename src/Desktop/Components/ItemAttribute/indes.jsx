@@ -68,7 +68,7 @@ class ItemAttribute extends Component {
                     type="radio"
                     name={this.state.parent + this.state.attribute + this.state.index}
                     checked={this.state.isChecked}
-                    value={this.state.parent + this.state.attribute + this.state.index}
+                    value={this.state.parent + this.state.attribute + this.state.index }
                 />
 
                 {this.state.attribute == "Color"

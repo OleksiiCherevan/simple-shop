@@ -13,7 +13,7 @@ const productAttributesSlice = createSlice({
 
         updateAttributes(state, action) {
             const { attribute, value } = action.payload;
-            state.attributes[attribute] = value;
+            state.attributes[attribute] = value; 
         },
 
         clearAttributes(state) {
