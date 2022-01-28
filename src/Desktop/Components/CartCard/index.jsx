@@ -8,6 +8,9 @@ import {
     increseProductCount,
     decreaseProductCount,
     setProducts,
+    removeProduct,
+    setProductCount,
+    increaseProductCount,
 } from "../../../store/productBagSlice";
 import ProductA from "./../../../assets/images/product-images/Product-C.png";
 import { useState } from "react/cjs/react.development";
@@ -26,50 +29,40 @@ import { useDispatch, useSelector } from "react-redux";
 //     }
 
 const CartCard = ({ product, index }) => {
-    const { name, prices, title, currencyIndex, count } = { ...product };
-
-    const [cardCount, setCardCount] = useState(count);
-
-    const products = useSelector((state) => state.productBag.products);
-
     const dispacth = useDispatch();
+    const { name, prices, title, count } = { ...product }; 
+    const { currencyIndex } = useSelector(state => state.currencyIndex)   
+    // const { products } = useSelector((state) => state.productBag);
 
-    useEffect(() => {
-        let indexOfProduct = products.findIndex((prod) => Object.entries(prod).toString() ===
-                Object.entries(product).toString());
-        console.log(indexOfProduct);
-
-        let newProducts = [...products]
-        let oldStoreProduct = newProducts[indexOfProduct]
-        newProducts[indexOfProduct] = {...oldStoreProduct}
-        newProducts[indexOfProduct].count = cardCount;
-
-        dispacth(setProducts({
-            products: newProducts
-        }))
-
-    }, [cardCount]);
+    const setStoreProductCount = (product, count) => {
+        dispacth(
+            setProductCount({
+                product,
+                count,
+            })
+        );
+    };
 
     const onIncreseCount = () => {
-        let value = cardCount;
-        value = value + 1 <= 99 ? value + 1 : 99;
-
-        setCardCount(value);
+      dispacth(increaseProductCount({
+          product
+      }))
     };
 
     const onDecreaseCount = () => {
-        let value = cardCount;
-        value = value - 1 > 0 ? value - 1 : 1;
-
-        setCardCount(value);
+        dispacth(decreaseProductCount({
+            product
+        }))
     };
 
     const onCountChange = (event) => {
-        let value = event.target.value;
-        value = value > 0 ? value : 1;
-        value = value <= 99 ? value : 99;
-        setCardCount(value);
+        setStoreProductCount(product, event.target.value) 
     };
+
+    const getTotalCardPrice = () => {
+        let totalPrice = product.prices[currencyIndex].amount * count
+            return totalPrice.toFixed(2)
+    }
 
     return (
         <div className="cart-card">
@@ -77,7 +70,7 @@ const CartCard = ({ product, index }) => {
                 <div className="cart-card__title">{name}</div>
                 <div className="cart-card__price">
                     {" "}
-                    {`${prices[currencyIndex].currency.symbol} ${prices[currencyIndex].amount}`}
+                    {`${prices[currencyIndex].currency.symbol} ${getTotalCardPrice()}`}
                 </div>
 
                 <div className="cart-card__attributes-wrapper">
@@ -99,7 +92,7 @@ const CartCard = ({ product, index }) => {
                 <input
                     className="cart-card__count"
                     type="text"
-                    value={cardCount}
+                    value={count}
                     onChange={(event) => onCountChange(event)}
                 ></input>
                 <div
@@ -110,7 +103,11 @@ const CartCard = ({ product, index }) => {
                 </div>
             </div>
 
-            <img className="cart-card__image" src={ProductA} alt={title}></img>
+            <img
+                className="cart-card__image"
+                src={product.gallery[0]}
+                alt={title}
+            ></img>
         </div>
     );
 };

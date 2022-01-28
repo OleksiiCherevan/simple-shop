@@ -1,55 +1,178 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 
+const MAX_COUNT = 100;
+
 const getTotalPrice = (products) => {
+    if (products.length === 0) return 0;
+
     let res = products.reduce((accum, item) => {
-        return accum + item.prices[item.currencyIndex].amount * item.count
-    }, 0)
-    return res.toFixed(2)
-}
+        return accum + item.prices[item.currencyIndex].amount * item.count;
+    }, 0);
+
+    return res.toFixed(2);
+};
+
+const getTotalCount = (products) => {
+    if (products.length === 0) return 0;
+
+    let res = products.reduce((accum, item) => {
+        return accum + item.count;
+    }, 0);
+
+    return res;
+};
+
+const getIndexOfProduct = (products, product) => {
+    let res = Array.from(products).findIndex((prod) => {
+        let newProd = { ...prod };
+        let newProduct = { ...product };
+
+        newProd.count = 1;
+        newProduct.count = 1;
+
+        return (
+            Object.entries(newProd).toString() ===
+            Object.entries(newProduct).toString()
+        );
+    });
+
+    return res;
+};
+
+const getProductsWithNewProductCount = (products, product, count) => {
+    let indexOfProduct = getIndexOfProduct(products, product);
+
+    let newProducts = [...products];
+    let oldStoreProduct = newProducts[indexOfProduct];
+
+    newProducts[indexOfProduct] = { ...oldStoreProduct };
+    newProducts[indexOfProduct].count = count;
+
+    return newProducts;
+};
+
+const getProductsWithoutProduct = (products, product) => {
+    let arrayProducts = Array.from(products);
+    let indexProductToChange = arrayProducts.indexOf(product);
+    arrayProducts.splice(indexProductToChange, 1);
+
+    return arrayProducts;
+};
 
 const productBagSlice = createSlice({
     name: "productBag",
     initialState: {
         products: [],
-        totalPrice: 0
+        totalPrice: 0,
+        totalCount: 0,
     },
     reducers: {
         addProduct(state, action) {
             const { product } = action.payload;
-            state.products.push(product);
+            const { products } = state;
 
-            state.totalPrice = getTotalPrice(state.products)
+            // let indexOfProduct = getIndexOfProduct(products, product);
+
+            // if (indexOfProduct < 0) {
+            //     state.products.push(product);
+            // } else {
+            //     let newProducts = getProductsWithNewProductCount(
+            //         products,
+            //         product,
+            //         products[indexOfProduct].count + 1
+            //     );
+
+            //     state.products = newProducts;
+            // }
+
+            state.products.push(product);
+            
+            state.totalPrice = getTotalPrice(products);
+            state.totalCount = getTotalCount(products);
         },
 
         setProducts(state, action) {
             const { products } = action.payload;
-            state.products = products;
 
-            state.totalPrice = getTotalPrice(state.products)
+            state.products = products;
+            state.totalPrice = getTotalPrice(products);
+            state.totalCount = getTotalCount(products);
         },
 
-        // increseProductCount(state, action) {
-        //     const { products } = state
-        //     const { product } = action.payload.product;
-        //     console.log(products);
-        //     let foundProduct = products.find(prod => prod === product )
-        //     foundProduct.count ++
-        //     state.products = products
-        // },
-
-        // decreaseProductCount(state, action) {
-        //     let product = action.payload.product;
-        //     let indexOfProduct = state.products.findIndex(product)
-        //     state.products[indexOfProduct].count --
-        // },
-
         removeProduct(state, action) {
+            const { products } = state;
+            const { product } = action.payload;
+
+            let newProducts = getProductsWithoutProduct(products, product);
+
+            state.products = newProducts;
+            state.totalPrice = getTotalPrice(newProducts);
+            state.totalCount = getTotalCount(newProducts);
+        },
+
+        setProductCount(state, action) {
+            const { products } = state;
+            const { product, count } = action.payload;
+
+            let newProducts = getProductsWithNewProductCount(
+                products,
+                product,
+                count
+            );
+
+            state.products = newProducts;
+            state.totalPrice = getTotalPrice(newProducts);
+            state.totalCount = getTotalCount(newProducts);
+        },
+
+        increaseProductCount(state, action) {
+            const { products } = state;
+            const { product } = action.payload;
+
+            if (product.count + 1 < MAX_COUNT) {
+                let newProducts = getProductsWithNewProductCount(
+                    products,
+                    product,
+                    product.count + 1
+                );
+                state.products = newProducts;
+                state.totalPrice = getTotalPrice(newProducts);
+                state.totalCount = getTotalCount(newProducts);
+            }
+        },
+
+        decreaseProductCount(state, action) {
+            const { products } = state;
+            const { product } = action.payload;
+
+            var newProducts;
+
+            if (product.count - 1 > 0) {
+                newProducts = getProductsWithNewProductCount(
+                    products,
+                    product,
+                    product.count - 1
+                );
+            } else {
+                newProducts = getProductsWithoutProduct(products, product);
+            }
+
+            state.products = newProducts;
+            state.totalPrice = getTotalPrice(newProducts);
+            state.totalCount = getTotalCount(newProducts);
         },
     },
 });
 
 // export const { addProduct, removeProduct, increseProductCount, decreaseProductCount } = productBagSlice.actions;
 
- export const { addProduct, removeProduct, setProducts} = productBagSlice.actions;
+export const {
+    addProduct,
+    removeProduct,
+    setProducts,
+    increaseProductCount,
+    decreaseProductCount,
+    setProductCount,
+} = productBagSlice.actions;
 
 export default productBagSlice.reducer;
