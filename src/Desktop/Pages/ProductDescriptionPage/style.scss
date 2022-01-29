@@ -87,17 +87,7 @@
         }
     }
 
-    &__add-to-cart {
-        cursor: pointer;
-        background-color: $primary;
-        color: $white;
-        border: 0;
-        font-size: $font-size-small;
-        font-weight: 500;
-        height: 4rem;
-        width: 100%;
-        max-width: 20rem;
-        margin-bottom: 3rem;
+    &__add-to-cart-wrapper {
     }
 
     &__main-description {

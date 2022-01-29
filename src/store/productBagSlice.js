@@ -17,7 +17,7 @@ const getTotalCount = (products) => {
     if (products.length === 0) return 0;
 
     let res = products.reduce((accum, item) => {
-        return accum + item.count;
+        return accum + (+item.count);
     }, 0);
 
     return res;
@@ -91,7 +91,7 @@ const productBagSlice = createSlice({
                 state.products.push(product);
                 state.totalPrice = getTotalPrice(products);
                 state.totalCount = getTotalCount(products);
-            } else {
+            } else if (products[indexOfProduct].count < MAX_COUNT - 1) {
 
                 let newProducts = getProductsWithNewProductCount(
                     products,
@@ -104,7 +104,6 @@ const productBagSlice = createSlice({
                 state.totalPrice = getTotalPrice(newProducts);
                 state.totalCount = getTotalCount(newProducts);
             } 
-           
         },
 
         setProducts(state, action) {

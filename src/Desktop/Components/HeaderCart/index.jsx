@@ -6,6 +6,7 @@ import { useState } from "react/cjs/react.development";
 import { useSelector } from "react-redux";
 
 import CartCard from "../CartCard";
+import ButtonPrimary from "../ButtonPrimary";
 
 const HeaderCartFunc = () => {
     const [isShow, setIsShow] = useState(false);
@@ -91,14 +92,12 @@ const HeaderCartFunc = () => {
                         </div>
 
                         <div className="header-cart-menu__control-buttons">
-                            <Link to='/cart-bag'>
+                            <Link to="/cart-bag">
                                 <button className="header-cart-menu__bag-open header-cart-menu__control-button">
                                     VIEW BAG
                                 </button>
                             </Link>
-                            <button className="header-cart-menu__check-out header-cart-menu__control-button">
-                                CHECK OUT
-                            </button>
+                            <ButtonPrimary width={160} height={48}>CHECK OUT</ButtonPrimary>
                         </div>
                     </div>
                 ) : null}

@@ -1,0 +1,13 @@
+@import "./../../../assets/styles/main-style.scss";
+
+.button-primary {
+    cursor: pointer;
+    background-color: $primary;
+    color: $white;
+    border: 0;
+    font-size: $font-size-small;
+    font-weight: 500;
+    // height: 4rem;
+    // width: 100%;
+    // max-width: 20rem;
+}

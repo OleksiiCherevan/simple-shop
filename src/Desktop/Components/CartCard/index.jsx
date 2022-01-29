@@ -49,11 +49,9 @@ const CartCard = ({ product, index }) => {
 
     const onCountChange = (event) => {
         let value = event.target.value
-        
 
         value = (value - 1 > 0) ? value : 1;
         value = (value - (-1) <= MAX_COUNT) ? value : MAX_COUNT;
-
         
         setStoreProductCount(product, value) 
     };

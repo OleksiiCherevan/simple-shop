@@ -4,18 +4,17 @@ import { Component, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import ReactImageMagnify from "react-image-magnify";
-import ItemAttributes from "../../Components/ItemAttributes";
 
 import {
-    ApolloClient,
-    InMemoryCache,
-    ApolloProvider,
     useQuery,
     gql,
 } from "@apollo/client";
 
+import ItemAttributes from "../../Components/ItemAttributes";
+import ButtonPrimary from "../../Components/ButtonPrimary";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../../../store/productBagSlice";
+
 
 // let products = [ProductA, ProductB];
 
@@ -157,14 +156,16 @@ const ProductDescriptionPageFunc = () => {
     `;
     const { loading, error, data } = useQuery(PRODUCT_FROM_ID);
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const [mainImage, setMainImage] = useState(null);
     const [product, setProduct] = useState(null);
 
-    const currencyIndex = useSelector(state => state.currencyIndex.currencyIndex)
+    const currencyIndex = useSelector(
+        (state) => state.currencyIndex.currencyIndex
+    );
 
-    const [selectedAttributes, setSelectedAttributes] = useState()
+    const [selectedAttributes, setSelectedAttributes] = useState();
 
     useEffect(() => {
         if (product) {
@@ -179,22 +180,23 @@ const ProductDescriptionPageFunc = () => {
     }, [data]);
 
     const onAttributesChange = (attributes) => {
-        setSelectedAttributes(attributes)
-    }
-    
+        setSelectedAttributes(attributes);
+    };
 
     const onHandleBuyClick = () => {
         let newProd = {
             ...product,
             selectedAttributes,
             currencyIndex,
-            count: 1
-        }
-        
-        dispatch(addProduct({
-            product: newProd
-        }))
-    }
+            count: 1,
+        };
+
+        dispatch(
+            addProduct({
+                product: newProd,
+            })
+        );
+    };
 
     const onHandleHover = (event, index) => {
         setMainImage(product.gallery[index]);
@@ -243,7 +245,10 @@ const ProductDescriptionPageFunc = () => {
                 <div className="pdp__product-brand">{product.brand}</div>
                 <div className="pdp__product-name">{product.name}</div>
 
-                <ItemAttributes product={product} onAttributesChange={onAttributesChange}></ItemAttributes>
+                <ItemAttributes
+                    product={product}
+                    onAttributesChange={onAttributesChange}
+                ></ItemAttributes>
 
                 <div className="pdp__price">
                     <div className="pdp__price-title">PRICE:</div>
@@ -252,8 +257,10 @@ const ProductDescriptionPageFunc = () => {
                     </div>
                 </div>
 
-                <button className="pdp__add-to-cart" onClick={onHandleBuyClick}>ADD TO CART</button>
-
+                {/* <button className="pdp__add-to-cart" onClick={onHandleBuyClick}>ADD TO CART</button> */}
+                <div className="pdp__add-to-cart-wrapper" onClick={onHandleBuyClick}>
+                    <ButtonPrimary height='4rem'>ADD TO CART</ButtonPrimary>
+                </div>
                 <div className="pdp__main-description">
                     <div
                         dangerouslySetInnerHTML={{
