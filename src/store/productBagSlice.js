@@ -33,8 +33,8 @@ const getIndexOfProduct = (products, product) => {
         newProduct.count = 1;
 
         return (
-            Object.entries(newProd).toString() ===
-            Object.entries(newProduct).toString()
+            JSON.stringify(newProd).toString() ===
+            JSON.stringify(newProduct).toString()
         );
     });
 
@@ -44,7 +44,6 @@ const getIndexOfProduct = (products, product) => {
 
 const getProductsWithNewProductCount = (products, product, count) => {
     let indexOfProduct = getIndexOfProduct(products, product);
-
     let newProducts = [...products];
     let oldStoreProduct = newProducts[indexOfProduct];
 
@@ -83,11 +82,13 @@ const productBagSlice = createSlice({
                 state.totalPrice = getTotalPrice(products);
                 state.totalCount = getTotalCount(products);
             } else {
+
                 let newProducts = getProductsWithNewProductCount(
                     products,
                     product,
                     products[indexOfProduct].count + 1
                 );
+
 
                 state.products = newProducts;
                 state.totalPrice = getTotalPrice(newProducts);

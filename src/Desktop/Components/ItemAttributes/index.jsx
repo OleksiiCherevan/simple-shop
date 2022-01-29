@@ -34,10 +34,9 @@ const ItemAttributes = (props) => {
     };
 
     useEffect(() => {
-        let a = { ...itemSelectedAttributes };
-        a[itemSelectedAttribute.attribute] = itemSelectedAttribute.value;
-        setItemSelectedAttributes(a)
-
+        let oldAttributes = { ...itemSelectedAttributes };
+        oldAttributes[itemSelectedAttribute.attribute] = itemSelectedAttribute.value;
+        setItemSelectedAttributes(oldAttributes)
     }, [itemSelectedAttribute]);
 
     useEffect(() => {

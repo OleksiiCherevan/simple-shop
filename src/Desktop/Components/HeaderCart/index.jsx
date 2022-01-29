@@ -1,18 +1,18 @@
 import "./style.scss";
 
-import { Component, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import { useState } from "react/cjs/react.development";
-import { useSelector, useDispatch } from "react-redux";
-import { addProduct, setProducts } from "../../../store/productBagSlice";
+import { useSelector } from "react-redux";
 
 import CartCard from "../CartCard";
 
 const HeaderCartFunc = () => {
-    const dispacth = useDispatch();
     const [isShow, setIsShow] = useState(false);
 
-    const { products, totalPrice, totalCount}  = useSelector((state) => state.productBag);
+    const { products, totalPrice, totalCount } = useSelector(
+        (state) => state.productBag
+    );
 
     const onShowCartClick = (event) => {
         setIsShow(!isShow);
@@ -30,7 +30,7 @@ const HeaderCartFunc = () => {
             ) : null}
 
             <div className="header-cart" onClick={onShowCartClick}>
-             <svg
+                <svg
                     width="20"
                     height="20"
                     viewBox="0 0 20 20"
@@ -91,9 +91,11 @@ const HeaderCartFunc = () => {
                         </div>
 
                         <div className="header-cart-menu__control-buttons">
-                            <button className="header-cart-menu__bag-open header-cart-menu__control-button">
-                                VIEW BAG
-                            </button>
+                            <Link to='/cart-bag'>
+                                <button className="header-cart-menu__bag-open header-cart-menu__control-button">
+                                    VIEW BAG
+                                </button>
+                            </Link>
                             <button className="header-cart-menu__check-out header-cart-menu__control-button">
                                 CHECK OUT
                             </button>

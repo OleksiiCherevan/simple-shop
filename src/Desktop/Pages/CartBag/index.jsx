@@ -1,30 +1,33 @@
 import "./style.scss";
-import { Component } from "react";
 
-import ProductCard from "../../Components/ProductCard";
 import Title from "../../Components/Title";
 import CartCard from "../../Components/CartCard";
+import { useSelector } from "react-redux";
 
-export class CartBag extends Component {
-    render() {
-        return (
-            <>
-                <div className="cart-bag">
-                    <Title>Cart</Title>
+const CartBag = () => {
+    const { products } = useSelector((state) => state.productBag);
+console.log(products);
+    return (
+        <>
+            <div className="cart-bag">
+                <Title>Cart</Title>
 
-                    <div className="cart-bag__content-wrapper">
-                        {[1, 2, 3, 4, 5, 6, 7].map((card) => {
+                <div className="cart-bag__content-wrapper">
+                    {products ? (
+                        products.map((product, index) => {
                             return (
-                                <div key={card} >
-                                    <CartCard />
+                                <div key={{ product, index }}>
+                                    <CartCard product={product} index={index} />
                                 </div>
                             );
-                        })}
-                    </div>
+                        })
+                    ) : (
+                        <div>Empty</div>
+                    )}
                 </div>
-            </>
-        );
-    }
-}
+            </div>
+        </>
+    );
+};
 
 export default CartBag;
