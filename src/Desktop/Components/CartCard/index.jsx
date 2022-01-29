@@ -23,10 +23,6 @@ const CartCard = ({ product, index }) => {
     const { name, prices, title, count } = { ...product }; 
     const { currencyIndex } = useSelector(state => state.currencyIndex)   
     
-
-    
-
-
     const setStoreProductCount = (product, count) => {
         dispacth(
             setProductCount({
@@ -53,12 +49,12 @@ const CartCard = ({ product, index }) => {
 
     const onCountChange = (event) => {
         let value = event.target.value
-        console.log(value);
+        
 
         value = (value - 1 > 0) ? value : 1;
         value = (value - (-1) <= MAX_COUNT) ? value : MAX_COUNT;
 
-        console.log(value);
+        
         setStoreProductCount(product, value) 
     };
 

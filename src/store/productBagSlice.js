@@ -4,7 +4,7 @@ const MAX_COUNT = 100;
 
 const getTotalPrice = (products) => {
     if (products.length === 0) return 0;
-
+    
     let res = products.reduce((accum, item) => {
         return accum + item.prices[item.currencyIndex].amount * item.count;
     }, 0);
@@ -23,6 +23,14 @@ const getTotalCount = (products) => {
     return res;
 };
 
+const getDefaultAttributes = (attributes) => {
+    let resAttributes = {};
+    for (let i = 0; i < attributes.length; i++) {
+        let attribute = attributes[i];
+        resAttributes[attribute.id] = attribute.items[0].id;
+    }
+    return resAttributes;
+};
 
 const getIndexOfProduct = (products, product) => {
     let res = Array.from(products).findIndex((prod) => {
@@ -78,6 +86,8 @@ const productBagSlice = createSlice({
             let indexOfProduct = getIndexOfProduct(products, product);
 
             if (indexOfProduct < 0) {
+                
+
                 state.products.push(product);
                 state.totalPrice = getTotalPrice(products);
                 state.totalCount = getTotalCount(products);

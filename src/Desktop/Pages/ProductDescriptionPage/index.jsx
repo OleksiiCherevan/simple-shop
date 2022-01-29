@@ -190,7 +190,7 @@ const ProductDescriptionPageFunc = () => {
             currencyIndex,
             count: 1
         }
-        console.log(newProd);
+        
         dispatch(addProduct({
             product: newProd
         }))

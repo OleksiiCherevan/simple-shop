@@ -8,15 +8,8 @@ import {
 } from "../../../store/productAttributesSlice";
 
 import ItemAttribute from "../ItemAttribute/indes";
-import { useSelector } from "react-redux";
-const getDefaultAttributes = (attributes) => {
-    let resAttributes = {};
-    for (let i = 0; i < attributes.length; i++) {
-        let attribute = attributes[i];
-        resAttributes[attribute.id] = attribute.items[0].id;
-    }
-    return resAttributes;
-};
+import { getDefaultAttributes } from "../../../assets/utils";
+
 
 const ItemAttributes = (props) => {
     const { product, parent, index, onAttributesChange } = { ...props };

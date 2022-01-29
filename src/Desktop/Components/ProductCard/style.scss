@@ -4,7 +4,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; 
+    justify-content: space-between;
 
     width: 386px;
 
@@ -22,6 +22,8 @@
         cursor: pointer;
     }
     &__image {
+        cursor: pointer;
+        
         padding: 10px;
         padding-bottom: 0;
         margin-bottom: 24px;
@@ -40,12 +42,18 @@
 
         .circle-icon {
             display: none;
-            width:3.25rem;
-            height: 3.25rem;
+            height: 52px;
 
             position: absolute;
             bottom: -1.3rem;
             right: 1.3rem;
+
+            border-radius: 100%;
+
+            &:hover {
+                -webkit-box-shadow: 3px 3px 10px 3px rgba(0, 0, 0, 0.14);
+                box-shadow: 3px 3px 10px 3px rgba(0, 0, 0, 0.14);                
+            }
         }
     }
 
@@ -79,7 +87,7 @@
 
         background-color: $white;
 
-        >div {
+        > div {
             text-transform: uppercase;
             font-size: $font-size-primary;
             color: $light-gray;

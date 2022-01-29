@@ -32,13 +32,11 @@ export class Home extends Component {
     }
 }
 
-
 const Content = () => {
     let { category } = useParams();
 
-    if (!category)
-        category = "all"
-    
+    if (!category) category = "all";
+
     const PRODUCTS_FROM_NAME_QUERY = gql` 
         query getCategories {
             category(input: { title:"${category}" }) {
@@ -83,10 +81,13 @@ const Content = () => {
             <Title>Category: {category}</Title>
 
             <div className="home__content-wrapper">
-                {data.category.products.map((product) => (
-                    <Link to={`/product/${product.id}`} key={product.id}>
-                        <ProductCard {...product}/>
-                    </Link>
+                {data.category.products.map((product, index) => (
+                    <ProductCard
+                        key={product.id}
+                        product={product}
+                        index={index}
+                        directTo={`/product/${product.id}`}
+                    />
                 ))}
             </div>
         </>

@@ -6,14 +6,7 @@ import { setAttributes, updateAttributes } from "../../../store/productAttribute
 
 import ItemAttribute from "../ItemAttribute/indes";
 import { useSelector } from "react-redux";
-const getDefaultAttributes = (attributes) => {
-    let resAttributes = {};
-    for (let i = 0; i < attributes.length; i++) {
-        let attribute = attributes[i];
-        resAttributes[attribute.id] = attribute.items[0].id;
-    }
-    return resAttributes;
-};
+import { getDefaultAttributes } from "../../../assets/utils";
 
 const ItemAttributes = (props) => {
     const {product, parent, index} = {...props};
@@ -25,7 +18,7 @@ const ItemAttributes = (props) => {
     
     const storeSelectedAttributes = useSelector(state =>  {
         let stateSelectedAttributes = state.productAttributes.attributes;
-        console.log(stateSelectedAttributes);
+        
 
         if(Object.keys(stateSelectedAttributes).length === 0) {
             dispatch(
@@ -39,7 +32,7 @@ const ItemAttributes = (props) => {
     }) 
 
     useEffect(() => {
-        console.log(storeSelectedAttributes)
+        
         setItemSelectedAttributes(storeSelectedAttributes)
     }, [storeSelectedAttributes]);
 

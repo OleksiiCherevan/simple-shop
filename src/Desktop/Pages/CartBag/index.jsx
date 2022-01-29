@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 const CartBag = () => {
     const { products } = useSelector((state) => state.productBag);
-console.log(products);
+
     return (
         <>
             <div className="cart-bag">
@@ -25,6 +25,8 @@ console.log(products);
                         <div>Empty</div>
                     )}
                 </div>
+
+                
             </div>
         </>
     );
