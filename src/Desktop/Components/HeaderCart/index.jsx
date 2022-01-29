@@ -7,13 +7,14 @@ import { useSelector } from "react-redux";
 
 import CartCard from "../CartCard";
 import ButtonPrimary from "../ButtonPrimary";
+import ButtonSecondary from "../ButtonSecondary";
+import CartTotalCount from "../CartTotalCount";
 
 const HeaderCartFunc = () => {
     const [isShow, setIsShow] = useState(false);
 
-    const { products, totalPrice, totalCount } = useSelector(
-        (state) => state.productBag
-    );
+    const { products, totalPrice, totalCount } = useSelector(state => state.productBag);
+    const { currencyIndex } = useSelector(state => state.currencyIndex)
 
     const onShowCartClick = (event) => {
         setIsShow(!isShow);
@@ -82,22 +83,17 @@ const HeaderCartFunc = () => {
                                 : null}
                         </div>
 
-                        <div className="header-cart-menu__total">
-                            <div className="header-cart-menu__total-label">
-                                Total
-                            </div>
-                            <div className="header-cart-menu__total-label">
-                                ${totalPrice}
-                            </div>
-                        </div>
+                        <CartTotalCount></CartTotalCount>
 
                         <div className="header-cart-menu__control-buttons">
                             <Link to="/cart-bag">
-                                <button className="header-cart-menu__bag-open header-cart-menu__control-button">
+                                <ButtonSecondary width={160} height={48}>
                                     VIEW BAG
-                                </button>
+                                </ButtonSecondary>
                             </Link>
-                            <ButtonPrimary width={160} height={48}>CHECK OUT</ButtonPrimary>
+                            <ButtonPrimary width={160} height={48}>
+                                CHECK OUT
+                            </ButtonPrimary>
                         </div>
                     </div>
                 ) : null}

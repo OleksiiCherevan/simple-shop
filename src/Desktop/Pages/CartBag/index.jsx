@@ -1,32 +1,42 @@
 import "./style.scss";
 
 import Title from "../../Components/Title";
-import CartCard from "../../Components/CartCard";
 import { useSelector } from "react-redux";
 
-const CartBag = () => {
-    const { products } = useSelector((state) => state.productBag);
+import CartCard from "../../Components/CartCard";
+import CartTotalCount from "../../Components/CartTotalCount";
 
+const CartBag = () => {
+    const { products, totalCount } = useSelector(state => state.productBag);
+    const { currencyIndex } = useSelector(state => state.currencyIndex);
     return (
         <>
             <div className="cart-bag">
                 <Title>Cart</Title>
 
-                <div className="cart-bag__content-wrapper">
-                    {products ? (
-                        products.map((product, index) => {
-                            return (
-                                <div key={{ product, index }}>
-                                    <CartCard product={product} index={index} />
-                                </div>
-                            );
-                        })
-                    ) : (
-                        <div>Empty</div>
-                    )}
-                </div>
+                {products.length > 0 ? (
+                    <>
+                        <div className="cart-bag__content-wrapper">
+                            {products ? (
+                                products.map((product, index) => {
+                                    return (
+                                        <div key={{ product, index }}>
+                                            <CartCard
+                                                product={product}
+                                                index={index}
+                                                parent={"cart-card"}
+                                            />
+                                        </div>
+                                    );
+                                })
+                            ) : (
+                                <div>Empty</div>
+                            )}
+                        </div>
 
-                
+                        <CartTotalCount></CartTotalCount>
+                    </>
+                ) : null}
             </div>
         </>
     );

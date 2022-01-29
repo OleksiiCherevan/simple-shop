@@ -1,0 +1,9 @@
+.cart-total-count {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: space-between;
+
+    &__label {
+        font-weight: 700;
+    }
+}

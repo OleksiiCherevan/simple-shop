@@ -95,15 +95,15 @@
         gap: 1rem;
     }
 
-    &__total {
-        margin-top: 3rem;
-        display: flex;
-        justify-content: space-between;
+    // &__total {
+    //     margin-top: 3rem;
+    //     display: flex;
+    //     justify-content: space-between;
 
-        &-label {
-            font-weight: 700;
-        }
-    }
+    //     &-label {
+    //         font-weight: 700;
+    //     }
+    // }
 
     &__control-buttons {
         margin-top: 2rem;
@@ -111,18 +111,6 @@
         justify-content: space-between;      
     }
 
-    &__control-button {
-        cursor: pointer;
-        height: 3rem;
-        width: 10rem;
-        border-style: none;
-        font-size: $font-size-small;
-    }
-
-    &__bag-open {
-        background: $white;
-        border: 1px solid $black;
-    }
 
     &__check-out {
         background: $primary;

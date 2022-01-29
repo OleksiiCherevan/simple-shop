@@ -247,6 +247,7 @@ const ProductDescriptionPageFunc = () => {
 
                 <ItemAttributes
                     product={product}
+                    parent={'pdp'}
                     onAttributesChange={onAttributesChange}
                 ></ItemAttributes>
 
@@ -259,7 +260,7 @@ const ProductDescriptionPageFunc = () => {
 
                 {/* <button className="pdp__add-to-cart" onClick={onHandleBuyClick}>ADD TO CART</button> */}
                 <div className="pdp__add-to-cart-wrapper" onClick={onHandleBuyClick}>
-                    <ButtonPrimary height='4rem'>ADD TO CART</ButtonPrimary>
+                    <ButtonPrimary height='4rem' width="256px">ADD TO CART</ButtonPrimary>
                 </div>
                 <div className="pdp__main-description">
                     <div

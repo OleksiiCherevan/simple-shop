@@ -18,11 +18,13 @@ import { useDispatch, useSelector } from "react-redux";
 
 const MAX_COUNT = 99;
 
-const CartCard = ({ product, index }) => {
-    const dispacth = useDispatch();
+const CartCard = (props) => {
+    const { product, index, parent } = props
     const { name, prices, title, count } = { ...product }; 
     const { currencyIndex } = useSelector(state => state.currencyIndex)   
-    
+    const dispacth = useDispatch();
+
+
     const setStoreProductCount = (product, count) => {
         dispacth(
             setProductCount({
@@ -56,9 +58,6 @@ const CartCard = ({ product, index }) => {
         setStoreProductCount(product, value) 
     };
 
-
-    const getTotalCardPrice = () =>  (product.prices[currencyIndex].amount * count).toFixed(2)
-
     
     return (
         <div className="cart-card">
@@ -66,7 +65,7 @@ const CartCard = ({ product, index }) => {
                 <div className="cart-card__title">{name}</div>
                 <div className="cart-card__price">
                     {" "}
-                    {`${prices[currencyIndex].currency.symbol} ${getTotalCardPrice()}`}
+                    {`${prices[currencyIndex].currency.symbol} ${(product.prices[currencyIndex].amount * count).toFixed(2)}`}
                 </div>
 
                 <div className="cart-card__attributes-wrapper">

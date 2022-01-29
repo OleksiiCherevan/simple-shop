@@ -1,0 +1,12 @@
+@import "./../../../assets/styles/main-style.scss";
+
+.button-secondary {
+    cursor: pointer;
+    height: 3rem;
+    width: 10rem;
+    border-style: none;
+    font-size: $font-size-small;
+
+    background: $white;
+    border: 1px solid $black;
+}
