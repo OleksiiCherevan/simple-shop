@@ -4,4 +4,4 @@ It`s my test work!
 
 Additional you need to have back-end part: 
 
-# ![back-end part](https://github.com/scandiweb/junior-react-endpoint)
+# [back-end part](https://github.com/scandiweb/junior-react-endpoint)
